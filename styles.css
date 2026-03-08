@@ -40,8 +40,8 @@ html {
     object-fit: cover;
     /* Shift the focal point to the very top to maximize hair visibility */
     object-position: center top;
-    /* Scale up slightly to crop out the video watermark at the edges */
-    transform: scale(1.05);
+    /* Scale up aggressively to ensure the video watermark at the bottom right is cropped out on tall mobile screens */
+    transform: scale(1.18);
 }
 
 .video-overlay {
