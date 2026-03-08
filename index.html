@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxtra Hair | Coming Soon</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Using premium typography: Playfair Display for headers, Inter for clean modern sans-serif -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="Luxury_Beauty_Animation_Creation.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <main class="content-wrapper">
+        <div class="content-inner">
+            <!-- Assuming the PNG is the logo since it supports transparency -->
+            <div class="logo-wrapper fade-in delay-1">
+                <img src="IMG_5083.PNG" alt="Luxtra Hair Logo" class="logo">
+            </div>
+
+            <h1 class="coming-soon fade-in delay-2">Coming Soon</h1>
+        </div>
+    </main>
+
+    <script>
+        // Smooth fade-in animation trigger once the page elements are ready
+        window.addEventListener('load', () => {
+            document.body.classList.add('page-loaded');
+        });
+    </script>
+</body>
+
+</html>
