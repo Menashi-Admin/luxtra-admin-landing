@@ -78,7 +78,8 @@ html {
 
 /* Logo */
 .logo-wrapper {
-    margin-bottom: 2.5rem;
+    /* Reduced margin-bottom and added negative margin to counteract any built-in padding in the PNG */
+    margin-bottom: -1rem;
 }
 
 .logo {
