@@ -76,33 +76,244 @@ html {
     width: 100%;
 }
 
-/* Logo */
+/* Logo — the source PNG has large built-in whitespace; we crop it visually */
 .logo-wrapper {
-    /* Reduced margin-bottom and added negative margin to counteract any built-in padding in the PNG */
-    margin-bottom: -1rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    max-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
     width: 100%;
-    max-width: 440px;
+    max-width: 600px;
     height: auto;
     /* Invert colors to make the black logo white on the dark premium background */
     filter: invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    /* Pull the actual text into view by offsetting the top whitespace */
+    margin-top: -20%;
+    margin-bottom: -25%;
 }
 
-/* Typography */
-.coming-soon {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 400;
-    letter-spacing: 0.15em;
+/* ─── Email Capture Section ─── */
+.email-capture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+}
+
+.capture-heading {
+    font-family: 'Genora Sans', 'Inter', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-weight: 300;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 3.5rem;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-    line-height: 1.2;
+    margin-bottom: 1.8rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-/* Removed extra featured image */
+.capture-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* ─── Glassmorphism Input ─── */
+.input-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 1rem 1.4rem;
+    border: 1px solid rgba(196, 151, 70, 0.3);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.input-wrapper input:focus {
+    border-color: rgba(232, 175, 72, 0.6);
+    box-shadow: 0 0 16px rgba(232, 175, 72, 0.12);
+}
+
+/* ─── Gold Ring Submit Button (inspired by golden nav bar) ─── */
+.submit-btn {
+    position: relative;
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.submit-btn:hover {
+    transform: scale(1.02);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Warm gold glow behind the ring */
+.btn-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: radial-gradient(ellipse at center, rgba(232, 175, 72, 0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+/* Spinning conic-gradient gold ring */
+.btn-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* 200% size, offset to spin from center */
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: conic-gradient(from 0deg,
+            #533517 0%,
+            #c49746 12%,
+            #feeaa5 22%,
+            #ffffff 24%,
+            #ffc0cb 25.5%,
+            #feeaa5 27%,
+            #c49746 37%,
+            #533517 50%,
+            #c49746 62%,
+            #feeaa5 72%,
+            #ffffff 74%,
+            #aaddff 75.5%,
+            #feeaa5 77%,
+            #c49746 87%,
+            #533517 100%);
+    animation: spin-ring 4.5s linear infinite;
+}
+
+/* Inner plate covers the center — only 2px of gold ring visible */
+.btn-ring::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 12px;
+    background: rgba(20, 15, 10, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes spin-ring {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button text face */
+.btn-face {
+    position: relative;
+    z-index: 2;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #feeaa5;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Submitted state */
+.submit-btn.submitted {
+    pointer-events: none;
+}
+
+.submit-btn.submitted .btn-face {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+/* ─── Disclaimer ─── */
+.capture-disclaimer {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.08em;
+    margin-top: 1rem;
+}
+
+/* ─── Success Message ─── */
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: #feeaa5;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+}
+
+.success-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-icon {
+    font-size: 1.2rem;
+    animation: pulse-star 2s ease-in-out infinite;
+}
+
+@keyframes pulse-star {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
 
 /* Premium Reveal Animations */
 .fade-in {
@@ -134,6 +345,6 @@ body.page-loaded .fade-in {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .logo {
-        max-width: 300px;
+        max-width: 420px;
     }
 }

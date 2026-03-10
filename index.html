@@ -10,6 +10,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <!-- Genora Sans approximation via clean geometric sans -->
+    <style>
+        @font-face {
+            font-family: 'Genora Sans';
+            src: local('Genora Sans'), local('GenorasSans');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +38,25 @@
                 <img src="assets/IMG_5083.PNG" alt="Luxtra Hair Logo" class="logo">
             </div>
 
-            <h1 class="coming-soon fade-in delay-2">Coming Soon</h1>
+            <div class="email-capture fade-in delay-2">
+                <h2 class="capture-heading">Request Access</h2>
+                <form class="capture-form" id="email-form">
+                    <div class="input-wrapper">
+                        <input type="email" id="email-input" placeholder="Enter your email" required
+                            autocomplete="email">
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-glow"></span>
+                        <span class="btn-ring"></span>
+                        <span class="btn-face">Submit</span>
+                    </button>
+                </form>
+
+                <div class="success-message" id="success-message">
+                    <span class="success-icon">✦</span>
+                    <span>You're on the list.</span>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -37,6 +64,34 @@
         // Smooth fade-in animation trigger once the page elements are ready
         window.addEventListener('load', () => {
             document.body.classList.add('page-loaded');
+        });
+
+        // Email capture handling
+        const form = document.getElementById('email-form');
+        const btn = document.getElementById('submit-btn');
+        const successMsg = document.getElementById('success-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            if (!email) return;
+
+            // Animate button
+            btn.classList.add('submitted');
+            btn.querySelector('.btn-face').textContent = '✓';
+
+            // Show success message
+            setTimeout(() => {
+                form.style.opacity = '0';
+                form.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    successMsg.classList.add('visible');
+                }, 400);
+            }, 600);
+
+            // Log email (replace with real API endpoint)
+            console.log('Email captured:', email);
         });
     </script>
 </body>
