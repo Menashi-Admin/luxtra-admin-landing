@@ -65,6 +65,8 @@ html {
     align-items: center;
     justify-content: center;
     padding: 3rem 1.5rem;
+    /* Push content down to make room for the model photo visible at the top */
+    padding-bottom: 6rem;
 }
 
 .content-inner {
@@ -76,25 +78,31 @@ html {
     width: 100%;
 }
 
-/* Logo — the source PNG has large built-in whitespace; we crop it visually */
-.logo-wrapper {
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-    max-height: 120px;
+/* ─── Brand Header (Text-based) ─── */
+.brand-header {
+    margin-bottom: 2.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-.logo {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    /* Invert colors to make the black logo white on the dark premium background */
-    filter: invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
-    /* Pull the actual text into view by offsetting the top whitespace */
-    margin-top: -20%;
-    margin-bottom: -25%;
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.brand-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.06em;
 }
 
 /* ─── Email Capture Section ─── */
@@ -265,14 +273,16 @@ html {
     font-size: 1.3rem;
 }
 
-/* ─── Disclaimer ─── */
+/* ─── Disclaimer (italic, matching design) ─── */
 .capture-disclaimer {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.3);
-    letter-spacing: 0.08em;
-    margin-top: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    margin-top: 1.5rem;
 }
 
 /* ─── Success Message ─── */
@@ -315,6 +325,23 @@ html {
     }
 }
 
+/* ─── Footer ─── */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+}
+
 /* Premium Reveal Animations */
 .fade-in {
     opacity: 0;
@@ -344,7 +371,7 @@ body.page-loaded .fade-in {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .logo {
-        max-width: 420px;
+    .brand-name {
+        font-size: clamp(1.6rem, 8vw, 2.4rem);
     }
 }

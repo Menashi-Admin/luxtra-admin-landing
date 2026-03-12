@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxtra Hair | Coming Soon</title>
+    <title>Luxtra Hair | A Modern Hair Maison</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Using premium typography: Playfair Display for headers, Inter for clean modern sans-serif -->
     <link
@@ -33,14 +33,15 @@
 
     <main class="content-wrapper">
         <div class="content-inner">
-            <!-- Assuming the PNG is the logo since it supports transparency -->
-            <div class="logo-wrapper fade-in delay-1">
-                <img src="assets/IMG_5083.PNG" alt="Luxtra Hair Logo" class="logo">
+            <!-- Brand Name + Tagline (text-based to match design) -->
+            <div class="brand-header fade-in delay-1">
+                <h1 class="brand-name">LUXTRA HAIR</h1>
+                <p class="brand-tagline">A Modern Hair Maison</p>
             </div>
 
             <div class="email-capture fade-in delay-2">
-                <h2 class="capture-heading">Join the Private List</h2>
-                <form class="capture-form" id="email-form" action="https://formsubmit.co/concierge@luxtrahair.com"
+                <h2 class="capture-heading">Request Private Access</h2>
+                <form class="capture-form" id="email-form" action="https://formsubmit.co/concierge@luxtra.com"
                     method="POST">
                     <!-- FormSubmit.co configuration -->
                     <input type="hidden" name="_subject" value="New Luxtra Hair Access Request">
@@ -48,15 +49,17 @@
                     <input type="hidden" name="_template" value="box">
                     <input type="text" name="_honey" style="display:none">
                     <div class="input-wrapper">
-                        <input type="email" name="email" id="email-input" placeholder="Email Address" required
+                        <input type="email" name="email" id="email-input" placeholder="Email" required
                             autocomplete="email">
                     </div>
                     <button type="submit" class="submit-btn" id="submit-btn">
                         <span class="btn-glow"></span>
                         <span class="btn-ring"></span>
-                        <span class="btn-face">Join</span>
+                        <span class="btn-face">Request Access</span>
                     </button>
                 </form>
+
+                <p class="capture-disclaimer fade-in delay-3">Be among the first to experience LUXTRA.<br>Private access will be extended in limited numbers.</p>
 
                 <div class="success-message" id="success-message">
                     <span class="success-icon">✦</span>
@@ -65,6 +68,10 @@
             </div>
         </div>
     </main>
+
+    <footer class="site-footer fade-in delay-3">
+        <span>&copy; LUXTRA</span>
+    </footer>
 
     <script>
         // Smooth fade-in animation trigger once the page elements are ready
