@@ -1,8 +1,8 @@
 /* CSS Reset and Variables */
 :root {
     --text-color: #ffffff;
-    --overlay-color: rgba(0, 0, 0, 0.4);
-    --overlay-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+    --overlay-color: rgba(0, 0, 0, 0.45);
+    --overlay-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 * {
@@ -55,10 +55,29 @@ html {
     z-index: 1;
 }
 
+/* Cinematic vignette — darkens edges, spotlights center */
+.video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 70% 60% at 50% 45%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.5) 70%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+}
+
 /* Main Content Styling */
 .content-wrapper {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -80,7 +99,7 @@ html {
 
 /* ─── Brand Header (Logo + Tagline) ─── */
 .brand-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(6rem, 18vw, 14rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,9 +107,9 @@ html {
 
 /* Logo — the source PNG has large built-in whitespace; we crop it visually */
 .logo-wrapper {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     overflow: hidden;
-    max-height: 120px;
+    max-height: clamp(100px, 18vw, 190px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,22 +117,22 @@ html {
 
 .logo {
     width: 100%;
-    max-width: 600px;
+    max-width: min(1200px, 85vw);
     height: auto;
     /* Invert colors to make the black logo white on the dark premium background */
     filter: invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
-    /* Pull the actual text into view by offsetting the top whitespace */
-    margin-top: -20%;
-    margin-bottom: -25%;
+    /* Pull the actual text into view by offsetting the built-in whitespace */
+    margin-top: -18%;
+    margin-bottom: -35%;
 }
 
 .brand-tagline {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: 'Genora Sans', 'Inter', sans-serif;
+    font-style: normal;
     font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-    font-weight: 400;
+    font-weight: 300;
     color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
 }
 
 /* ─── Email Capture Section ─── */
@@ -286,54 +305,183 @@ html {
 
 /* ─── Disclaimer (italic, matching design) ─── */
 .capture-disclaimer {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: 'Genora Sans', 'Inter', sans-serif;
+    font-style: normal;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
-    font-weight: 400;
+    font-weight: 300;
     color: rgba(255, 255, 255, 0.55);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
     line-height: 1.6;
     margin-top: 1.5rem;
 }
 
-/* ─── Success Message ─── */
+/* ─── Button shimmer effect on submit ─── */
+.submit-btn.shimmer-active .btn-ring::before {
+    animation: spin-ring 1s linear infinite;
+}
+
+.submit-btn.shimmer-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(254, 234, 165, 0.3) 40%,
+        rgba(254, 234, 165, 0.5) 50%,
+        rgba(254, 234, 165, 0.3) 60%,
+        transparent 100%
+    );
+    animation: shimmer-sweep 0.8s ease-out forwards;
+    z-index: 3;
+    border-radius: 14px;
+}
+
+@keyframes shimmer-sweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ─── Success Message — Grand Luxury Reveal ─── */
 .success-message {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: #feeaa5;
-    letter-spacing: 0.04em;
+    gap: 1.5rem;
+    position: relative;
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
     pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .success-message.visible {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
-.success-icon {
-    font-size: 1.2rem;
-    animation: pulse-star 2s ease-in-out infinite;
+/* Confirmation text */
+.success-text {
+    font-family: 'Genora Sans', 'Inter', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 300;
+    color: #feeaa5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: opacity 0.6s ease 0.5s, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.25) 0.5s;
+    text-shadow: 0 0 15px rgba(232, 175, 72, 0.4);
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes pulse-star {
+.success-message.visible .success-text {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
 
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* ─── Gold radial light burst ─── */
+.success-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(254, 234, 165, 0.3) 0%,
+        rgba(232, 175, 72, 0.1) 30%,
+        transparent 60%
+    );
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
 
-    50% {
-        opacity: 0.6;
-        transform: scale(1.2);
-    }
+.success-message.visible .success-burst {
+    animation: light-burst-flash 2.5s ease-out forwards 0.4s;
+}
+
+@keyframes light-burst-flash {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    20% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; filter: brightness(1.5); }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; filter: brightness(1); }
+}
+
+/* ─── Floating gold particles ─── */
+.gold-particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #feeaa5;
+    box-shadow: 0 0 6px #feeaa5, 0 0 12px #e8af48;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.success-message.visible .gold-particle {
+    animation: particle-explode 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.p1 { top: 60%; left: 50%; animation-delay: 0.4s !important; width: 6px; height: 6px; }
+.p2 { top: 60%; left: 50%; animation-delay: 0.45s !important; }
+.p3 { top: 60%; left: 50%; animation-delay: 0.4s !important; width: 4px; height: 4px; }
+.p4 { top: 60%; left: 50%; animation-delay: 0.5s !important; width: 7px; height: 7px; }
+.p5 { top: 60%; left: 50%; animation-delay: 0.45s !important; }
+.p6 { top: 60%; left: 50%; animation-delay: 0.5s !important; width: 4px; height: 4px; }
+
+.success-message.visible .p1 { animation-name: particle-blast-1; }
+.success-message.visible .p2 { animation-name: particle-blast-2; }
+.success-message.visible .p3 { animation-name: particle-blast-3; }
+.success-message.visible .p4 { animation-name: particle-blast-4; }
+.success-message.visible .p5 { animation-name: particle-blast-5; }
+.success-message.visible .p6 { animation-name: particle-blast-6; }
+
+@keyframes particle-blast-1 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0) rotate(0deg); }
+    15% { opacity: 1; transform: translate(-60px, -80px) scale(1.5) rotate(45deg); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(-80px, -120px) scale(0.8) rotate(90deg); filter: brightness(1); }
+    100% { opacity: 0; transform: translate(-100px, -140px) scale(0) rotate(120deg); }
+}
+@keyframes particle-blast-2 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: translate(70px, -60px) scale(1.2); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(100px, -90px) scale(0.8); }
+    100% { opacity: 0; transform: translate(120px, -110px) scale(0); }
+}
+@keyframes particle-blast-3 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: translate(-70px, 30px) scale(1); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(-100px, 50px) scale(0.5); }
+    100% { opacity: 0; transform: translate(-120px, 60px) scale(0); }
+}
+@keyframes particle-blast-4 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: translate(80px, 40px) scale(1.8); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(110px, 60px) scale(1); }
+    100% { opacity: 0; transform: translate(130px, 70px) scale(0); }
+}
+@keyframes particle-blast-5 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: translate(-30px, -100px) scale(0.7); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(-40px, -140px) scale(0.4); }
+    100% { opacity: 0; transform: translate(-50px, -170px) scale(0); }
+}
+@keyframes particle-blast-6 {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: translate(40px, -90px) scale(1.1); filter: brightness(1.5); }
+    80% { opacity: 0.8; transform: translate(60px, -130px) scale(0.7); }
+    100% { opacity: 0; transform: translate(70px, -160px) scale(0); }
 }
 
 /* ─── Footer ─── */
@@ -342,7 +490,7 @@ html {
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     text-align: center;
     padding: 1.5rem 1rem;
     font-family: 'Inter', sans-serif;
@@ -381,8 +529,4 @@ body.page-loaded .fade-in {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .logo {
-        max-width: 420px;
-    }
-}
+/* Mobile-specific adjustments are handled by vw-based sizing above */

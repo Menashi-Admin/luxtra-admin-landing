@@ -42,7 +42,7 @@
             </div>
 
             <div class="email-capture fade-in delay-2">
-                <h2 class="capture-heading">Request Private Access</h2>
+                <h2 class="capture-heading">JOIN THE LUXTRA PRIVATE LIST</h2>
                 <form class="capture-form" id="email-form" action="https://formsubmit.co/concierge@luxtrahair.com"
                     method="POST">
                     <!-- FormSubmit.co configuration -->
@@ -61,11 +61,21 @@
                     </button>
                 </form>
 
-                <p class="capture-disclaimer fade-in delay-3">Be among the first to experience LUXTRA.<br>Private access will be extended in limited numbers.</p>
+                <p class="capture-disclaimer fade-in delay-3">Be among the first to experience LUXTRA.<br>Crafted in
+                    limited releases.</p>
 
                 <div class="success-message" id="success-message">
-                    <span class="success-icon">✦</span>
-                    <span>You're on the list.</span>
+                    <!-- Gold light burst behind everything -->
+                    <div class="success-burst"></div>
+                    <!-- Floating gold particles -->
+                    <div class="gold-particle p1"></div>
+                    <div class="gold-particle p2"></div>
+                    <div class="gold-particle p3"></div>
+                    <div class="gold-particle p4"></div>
+                    <div class="gold-particle p5"></div>
+                    <div class="gold-particle p6"></div>
+                    <!-- Confirmation text -->
+                    <span class="success-text">You're on the list.</span>
                 </div>
             </div>
         </div>
@@ -91,8 +101,8 @@
             const email = document.getElementById('email-input').value;
             if (!email) return;
 
-            // Animate button
-            btn.classList.add('submitted');
+            // Stage 1: Gold shimmer on button
+            btn.classList.add('shimmer-active');
             btn.querySelector('.btn-face').textContent = '✓';
 
             // Send form data to FormSubmit.co via AJAX
@@ -101,27 +111,36 @@
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                // Show success message regardless (form data was sent)
+            }).then(() => {}).catch(() => {});
+
+            // Stage 2: Fade out form after shimmer
+            setTimeout(() => {
+                btn.classList.add('submitted');
+                form.style.opacity = '0';
+                form.style.transform = 'translateY(-15px) scale(0.98)';
+                // Also fade out the disclaimer
+                const disclaimer = document.querySelector('.capture-disclaimer');
+                if (disclaimer) {
+                    disclaimer.style.opacity = '0';
+                    disclaimer.style.transform = 'translateY(-10px)';
+                    disclaimer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                }
+                // Also fade out the heading
+                const heading = document.querySelector('.capture-heading');
+                if (heading) {
+                    heading.style.opacity = '0';
+                    heading.style.transform = 'translateY(-10px)';
+                    heading.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                }
+
+                // Stage 3: Grand reveal
                 setTimeout(() => {
-                    form.style.opacity = '0';
-                    form.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        form.style.display = 'none';
-                        successMsg.classList.add('visible');
-                    }, 400);
+                    form.style.display = 'none';
+                    if (disclaimer) disclaimer.style.display = 'none';
+                    if (heading) heading.style.display = 'none';
+                    successMsg.classList.add('visible');
                 }, 600);
-            }).catch(() => {
-                // Still show success — the email was likely sent
-                setTimeout(() => {
-                    form.style.opacity = '0';
-                    form.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        form.style.display = 'none';
-                        successMsg.classList.add('visible');
-                    }, 400);
-                }, 600);
-            });
+            }, 800);
         });
     </script>
 </body>
