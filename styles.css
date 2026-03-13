@@ -109,7 +109,7 @@ html {
 .logo-wrapper {
     margin-bottom: 0.25rem;
     overflow: hidden;
-    max-height: clamp(100px, 18vw, 190px);
+    max-height: clamp(140px, 28vw, 240px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +117,8 @@ html {
 
 .logo {
     width: 100%;
-    max-width: min(1200px, 85vw);
+    /* Increase relative width for mobile to dominate the screen more */
+    max-width: min(1200px, 98vw);
     height: auto;
     /* Invert colors to make the black logo white on the dark premium background */
     filter: invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
@@ -129,10 +130,12 @@ html {
 .brand-tagline {
     font-family: 'Genora Sans', 'Inter', sans-serif;
     font-style: normal;
-    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    transform: translateY(-8px);
+    /* Significantly smaller on mobile so it is just subtext */
+    font-size: clamp(0.7rem, 1.8vw, 1.1rem);
     font-weight: 300;
     color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
 }
 
 /* ─── Email Capture Section ─── */
