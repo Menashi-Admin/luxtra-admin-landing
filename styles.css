@@ -78,7 +78,7 @@ html {
     width: 100%;
 }
 
-/* ─── Brand Header (Text-based) ─── */
+/* ─── Brand Header (Logo + Tagline) ─── */
 .brand-header {
     margin-bottom: 2.5rem;
     display: flex;
@@ -86,14 +86,25 @@ html {
     align-items: center;
 }
 
-.brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    color: #ffffff;
-    text-transform: uppercase;
+/* Logo — the source PNG has large built-in whitespace; we crop it visually */
+.logo-wrapper {
     margin-bottom: 0.5rem;
+    overflow: hidden;
+    max-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    /* Invert colors to make the black logo white on the dark premium background */
+    filter: invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    /* Pull the actual text into view by offsetting the top whitespace */
+    margin-top: -20%;
+    margin-bottom: -25%;
 }
 
 .brand-tagline {
@@ -371,7 +382,7 @@ body.page-loaded .fade-in {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .brand-name {
-        font-size: clamp(1.6rem, 8vw, 2.4rem);
+    .logo {
+        max-width: 420px;
     }
 }
