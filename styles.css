@@ -487,7 +487,6 @@ html {
     100% { opacity: 0; transform: translate(70px, -160px) scale(0); }
 }
 
-/* ─── Footer ─── */
 .site-footer {
     position: fixed;
     bottom: 0;
@@ -502,6 +501,23 @@ html {
     letter-spacing: 0.2em;
     color: rgba(255, 255, 255, 0.35);
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.built-by {
+    color: rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    letter-spacing: 0.15em;
+    font-size: 0.65rem;
+}
+
+.built-by:hover {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Premium Reveal Animations */
