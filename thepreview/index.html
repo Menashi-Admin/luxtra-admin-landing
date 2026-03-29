@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Private Preview — LUXTRA HAIR</title>
+    <meta name="description" content="You are invited to The Private Preview. A quiet presentation of the Fleur collection, celebrating the debut of Luxtra Hair.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9D83;
+            --sage-light: #A8B8A0;
+            --sage-muted: #9BAE94;
+            --olive: #384B2D;
+            --olive-deep: #2C3B23;
+            --ivory: #F6F4F2;
+            --ivory-warm: #F2EDE4;
+            --cream: #FAF8F5;
+            --stone: #E8E0D5;
+            --rose-clay: #B8806A;
+            --gold: #C4A265;
+            --gold-muted: rgba(196, 162, 101, 0.35);
+            --text-dark: #2C2C2C;
+            --text-body: #4A4A42;
+            --text-soft: #6A6A5E;
+            --text-faint: #9A9A8E;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-dark);
+            background: var(--ivory);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        body.locked { overflow: hidden; }
+
+        /* =============================================
+           TYPOGRAPHY
+           ============================================= */
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        .sans { font-family: 'Inter', sans-serif; }
+
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+        .eyebrow.olive { color: var(--olive); }
+        .eyebrow.gold { color: var(--gold); }
+
+        /* =============================================
+           DECORATIVE DIVIDER (Gold Rule + Star)
+           ============================================= */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 28px 0;
+        }
+        .ornament-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold-muted);
+        }
+        .ornament-star {
+            color: var(--gold);
+            font-size: 0.7rem;
+            line-height: 1;
+        }
+
+        /* =============================================
+           SCROLL REVEAL
+           ============================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.25s; }
+        .d3 { transition-delay: 0.4s; }
+        .d4 { transition-delay: 0.55s; }
+        .d5 { transition-delay: 0.7s; }
+
+        /* =============================================
+           SECTION 0 — ENVELOPE (Video-based)
+           ============================================= */
+        #envelope {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        #envelope.fading {
+            opacity: 0;
+        }
+        #envelope.hidden {
+            display: none;
+        }
+
+        /* Video fills entire screen, scaled slightly to crop out Veo watermark */
+        .env-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transform: scale(1.08); /* crops out edge watermarks smoothly */
+        }
+
+        /* Fallback: static image centered (used when no video) */
+        .env-fallback {
+            position: relative;
+            z-index: 2;
+            width: min(82vw, 360px);
+            transition: transform 1.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        opacity 1.4s ease,
+                        filter 1.2s ease;
+        }
+        .env-fallback img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        .env-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            text-align: center;
+            padding: 80px 32px 48px;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
+            transition: opacity 0.6s ease;
+        }
+        .env-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.6rem, 5vw, 2rem);
+            color: #FFFFFF;
+            letter-spacing: 0.06em;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+        }
+        .env-hint {
+            margin-top: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            letter-spacing: 0.18em;
+            margin-right: -0.18em; /* optical centering */
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+            opacity: 0;
+            animation: breatheHint 4s 2s infinite ease-in-out;
+        }
+        @keyframes breatheHint {
+            0% { opacity: 0; }
+            20% { opacity: 0.85; }
+            60% { opacity: 0.35; }
+            100% { opacity: 0.85; }
+        }
+
+        /* Animation phases */
+        #envelope.phase-glow .env-fallback {
+            transform: translateY(-10px) scale(1.03);
+            filter: brightness(1.06);
+        }
+        #envelope.phase-glow .env-text {
+            opacity: 0;
+            transform: translateY(-12px);
+        }
+        #envelope.phase-dissolve .env-fallback {
+            transform: translateY(-24px) scale(1.2);
+            opacity: 0;
+            filter: brightness(1.2) blur(8px);
+        }
+
+        /* =============================================
+           SECTION 1 — HERO
+           ============================================= */
+        #hero {
+            position: relative;
+            height: 100vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--olive-deep);
+        }
+        /* Mask Veo watermark on hero garden video by scaling out edges */
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        .hero-media img, .hero-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transform: scale(1.08);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                linear-gradient(to bottom, rgba(20,30,15,0.35) 0%, rgba(20,30,15,0.25) 30%, rgba(20,30,15,0.30) 60%, rgba(20,30,15,0.55) 100%),
+                radial-gradient(ellipse at 50% 45%, rgba(20,30,15,0.25) 0%, rgba(20,30,15,0.40) 70%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-eyebrow {
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+        }
+        .hero-logo {
+            height: 280px;
+            width: auto;
+            max-width: 380px;
+            /* invert: white-bg→black, black-text→white. screen mode: black bg disappears, white text shows */
+            filter: invert(1);
+            mix-blend-mode: screen;
+            opacity: 0.95;
+            display: block;
+            /* Compensate for PNG whitespace padding */
+            margin-bottom: -44px;
+        }
+        .hero-presents {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.58rem;
+            letter-spacing: 0.38em;
+            margin-right: -0.38em; /* optical centering */
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 200;
+            font-size: clamp(3.2rem, 11vw, 6rem);
+            letter-spacing: 0.3em;
+            margin-right: -0.3em; /* optical centering */
+            text-transform: uppercase;
+            font-variant: small-caps;
+            color: rgba(255,255,255,0.88);
+            text-shadow: 0 1px 12px rgba(0,0,0,0.2);
+            line-height: 1;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            opacity: 0;
+        }
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            letter-spacing: 0.22em;
+            margin-right: -0.22em; /* optical centering */
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+            margin-top: 16px;
+            opacity: 0;
+        }
+        .hero-ornament {
+            margin: 24px 0;
+            opacity: 0;
+        }
+        .hero-ornament .ornament-line { background: rgba(255,255,255,0.2); }
+        .hero-ornament .ornament-star { color: var(--gold); }
+
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+            letter-spacing: 0.04em;
+            opacity: 0;
+        }
+        .hero-fine {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.04em;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            margin-top: 8px;
+            opacity: 0;
+        }
+
+        /* Hero animations — paused until envelope done */
+        .hero-eyebrow, .hero-title, .hero-sub, .hero-ornament,
+        .hero-date, .hero-fine, .hero-scroll {
+            animation: heroReveal 1.5s forwards;
+            animation-play-state: paused;
+        }
+        .hero-eyebrow { animation-delay: 0.2s; }
+        .hero-title { animation-delay: 0.7s; animation-duration: 1.8s; }
+        .hero-sub { animation-delay: 1.4s; }
+        .hero-ornament { animation-delay: 1.9s; }
+        .hero-date { animation-delay: 2.4s; }
+        .hero-fine { animation-delay: 2.8s; }
+        .hero-scroll { animation-delay: 3.4s; }
+
+        body.hero-on .hero-eyebrow, body.hero-on .hero-title,
+        body.hero-on .hero-sub, body.hero-on .hero-ornament,
+        body.hero-on .hero-date, body.hero-on .hero-fine,
+        body.hero-on .hero-scroll {
+            animation-play-state: running;
+        }
+
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Discover scroll indicator uses different centering so override animation end state */
+        body.hero-on .hero-scroll {
+            transform: none !important;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: max-content;
+            z-index: 10;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transform: none;
+        }
+        .hero-scroll-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+        }
+        .hero-scroll-line {
+            width: 1px;
+            height: 24px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* =============================================
+           SECTION 2 — INVITATION COPY
+           ============================================= */
+        #invitation {
+            background: var(--cream);
+            padding: 100px 32px;
+            text-align: center;
+        }
+        .inv-block {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .inv-block p {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+            line-height: 2;
+            color: var(--text-body);
+            letter-spacing: 0.01em;
+        }
+        .inv-block p + p { margin-top: 28px; }
+        .inv-block em {
+            font-style: italic;
+            color: var(--olive);
+            font-weight: 500;
+        }
+
+        /* =============================================
+           SECTION 3 — SAVE THE DATE
+           ============================================= */
+        #save-date {
+            background: var(--ivory);
+            padding: 80px 32px;
+            text-align: center;
+        }
+        .save-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-top: 48px;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .detail-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.6rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-bottom: 6px;
+        }
+        .detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: var(--text-dark);
+            letter-spacing: 0.03em;
+        }
+
+        /* =============================================
+           SECTION 4 — RSVP
+           ============================================= */
+        #rsvp {
+            background: var(--stone);
+            padding: 80px 24px 100px;
+            text-align: center;
+        }
+        .rsvp-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+            letter-spacing: 0.08em;
+            color: var(--text-dark);
+        }
+        .rsvp-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--text-soft);
+            margin-top: 4px;
+        }
+        .rsvp-fine {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            margin-top: 8px;
+        }
+
+        .rsvp-card {
+            max-width: 480px;
+            width: 100%;
+            margin: 36px auto 0;
+            padding: 36px 28px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-label {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .form-input {
+            width: 100%;
+            background: var(--cream);
+            border: 1px solid rgba(139, 157, 131, 0.2);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .form-input::placeholder { color: var(--text-faint); }
+        .form-input:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(139,157,131,0.1);
+        }
+        select.form-input { color: var(--text-soft); }
+        textarea.form-input { min-height: 100px; resize: vertical; }
+
+        .radio-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 4px;
+        }
+        .radio-opt { flex: 1; position: relative; }
+        .radio-opt input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .radio-opt label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 8px;
+            border: 1px solid rgba(139,157,131,0.2);
+            border-radius: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--text-soft);
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--cream);
+        }
+        .radio-opt label .radio-circle {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            border: 1.5px solid var(--rose-clay);
+            display: inline-block;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .radio-opt input:checked + label {
+            border-color: var(--sage);
+            background: rgba(139,157,131,0.06);
+            color: var(--olive);
+        }
+        .radio-opt input:checked + label .radio-circle {
+            background: var(--olive);
+            border-color: var(--olive);
+            box-shadow: inset 0 0 0 2.5px white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 24px;
+            margin-top: 8px;
+            background: var(--olive);
+            color: var(--ivory);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            margin-right: -0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .submit-btn:hover {
+            background: var(--olive-deep);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(56,75,45,0.2);
+        }
+        .submit-btn svg { width: 16px; height: 16px; }
+
+        /* =============================================
+           CONFIRMATION
+           ============================================= */
+        #confirm {
+            display: none;
+            background: var(--stone);
+            padding: 100px 32px;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+        }
+        #confirm.show { display: flex; }
+        .confirm-icon {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 1.5px solid var(--sage-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--sage);
+            font-size: 1.2rem;
+        }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        footer {
+            background: var(--ivory);
+            padding: 60px 24px 36px;
+            text-align: center;
+            border-top: 1px solid rgba(196,162,101,0.12);
+        }
+        .footer-names {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+        .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-top: 8px;
+        }
+        .footer-copy {
+            margin-top: 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            color: rgba(154,154,142,0.5);
+            line-height: 1.8;
+        }
+        .built-by {
+            display: inline-block;
+            margin-top: 4px;
+            color: rgba(154,154,142,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .built-by:hover {
+            color: var(--olive);
+        }
+
+        /* =============================================
+           FLOATING UI
+           ============================================= */
+        .audio-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 500;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(139,157,131,0.25);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-faint);
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        body.hero-on .audio-btn {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            transition-delay: 1.2s; /* Waits until the garden crossfade finishes */
+        }
+        .audio-btn:hover { border-color: var(--sage); color: var(--olive); }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
+        @media (min-width: 768px) {
+            #invitation { padding: 140px 48px; }
+            #save-date { padding: 120px 48px; }
+            #rsvp { padding: 100px 48px 120px; }
+            .rsvp-card { padding: 44px 40px; }
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <!-- ======== ENVELOPE ======== -->
+    <div id="envelope">
+        <video class="env-video" muted playsinline preload="auto" src="assets/Magical_Envelope_Opens_Itself.mp4#t=0.1"></video>
+        <div class="env-text">
+            <div class="env-title">You are invited.</div>
+            <div class="env-hint">Tap to open</div>
+        </div>
+    </div>
+
+    <!-- ======== AUDIO ======== -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="assets/undress.mp4" type="audio/mpeg">
+    </audio>
+    <button class="audio-btn" id="audioBtn" aria-label="Toggle sound">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+    </button>
+
+    <!-- ======== HERO ======== -->
+    <section id="hero">
+        <div class="hero-media">
+            <video muted autoplay loop playsinline>
+                <source src="assets/Secret_Garden_Cinematic_Video_Generation.mp4" type="video/mp4">
+                <img src="assets/floral-garden-bg.png" alt="Lush floral garden at golden hour">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <span class="hero-eyebrow">
+                <img class="hero-logo" src="assets/IMG_5083.PNG" alt="Luxtra Hair">
+                <span class="hero-presents">presents</span>
+            </span>
+            <h1 class="hero-title">Fleur</h1>
+            <p class="hero-sub">The Private Preview</p>
+
+            <div class="ornament hero-ornament">
+                <span class="ornament-line"></span>
+                <span class="ornament-star">✦</span>
+                <span class="ornament-line"></span>
+            </div>
+
+            <p class="hero-date">17 May</p>
+            <p class="hero-fine">Further details will be shared upon confirmation</p>
+        </div>
+
+        <div class="hero-scroll">
+            <span class="hero-scroll-text">Discover</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ======== INVITATION COPY ======== -->
+    <section id="invitation">
+        <div class="inv-block">
+            <p class="reveal">You are invited to <em>The Private Preview</em>.</p>
+
+            <div class="ornament reveal d1">
+                <span class="ornament-line"></span>
+                <span class="ornament-star">✦</span>
+                <span class="ornament-line"></span>
+            </div>
+
+            <p class="reveal d1">
+                In celebration of the debut of Luxtra Hair,<br>
+                we welcome you into <em>Fleur</em>.
+            </p>
+
+            <p class="reveal d2">
+                A quiet presentation of the collection,<br>
+                where each piece is revealed<br>
+                with intention, restraint, and care.
+            </p>
+
+            <p class="reveal d3">
+                An invitation to experience the forms,<br>
+                the movement,<br>
+                and the nuance of each creation.
+            </p>
+
+            <p class="reveal d4">
+                For those who feel drawn,<br>
+                a limited selection<br>
+                will be presented for consideration.
+            </p>
+
+            <div class="ornament reveal d5">
+                <span class="ornament-line"></span>
+                <span class="ornament-star">✦</span>
+                <span class="ornament-line"></span>
+            </div>
+
+            <p class="reveal d5">We look forward to receiving you.</p>
+        </div>
+    </section>
+
+    <!-- ======== SAVE THE DATE ======== -->
+    <section id="save-date">
+        <h2 class="save-heading reveal">Save the Date</h2>
+
+        <div class="ornament reveal d1">
+            <span class="ornament-line"></span>
+            <span class="ornament-star">✦</span>
+            <span class="ornament-line"></span>
+        </div>
+
+        <div class="details-grid">
+            <div class="reveal d1">
+                <div class="detail-label">Date</div>
+                <div class="detail-value">17 May</div>
+            </div>
+            <div class="reveal d2">
+                <div class="detail-label">Details</div>
+                <div class="detail-value">To follow upon confirmation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== RSVP ======== -->
+    <section id="rsvp">
+        <h2 class="rsvp-heading reveal">Be Our Guest</h2>
+
+        <div class="rsvp-card reveal d1">
+            <form id="rsvpForm" action="https://formsubmit.co/rsvp@luxtrahair.com" method="POST">
+                <input type="hidden" name="_subject" value="Private Preview RSVP">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="text" name="_honey" style="display:none">
+
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" name="name" class="form-input" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" name="phone" class="form-input" placeholder="Your phone number">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Will you be joining us? *</label>
+                    <div class="radio-row">
+                        <div class="radio-opt">
+                            <input type="radio" id="yes" name="attendance" value="With pleasure" required>
+                            <label for="yes"><span class="radio-circle"></span> With pleasure</label>
+                        </div>
+                        <div class="radio-opt">
+                            <input type="radio" id="no" name="attendance" value="Regretfully unable">
+                            <label for="no"><span class="radio-circle"></span> Regretfully unable</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">A note for Luxtra</label>
+                    <textarea name="note" class="form-input" placeholder="Share your thoughts..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ======== CONFIRMATION ======== -->
+    <div id="confirm">
+        <div class="confirm-icon">✓</div>
+        <h2 class="save-heading" style="font-size: 2rem;">Thank you</h2>
+        <div class="ornament" style="margin: 16px 0;">
+            <span class="ornament-line"></span>
+            <span class="ornament-star">✦</span>
+            <span class="ornament-line"></span>
+        </div>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--text-soft); max-width: 360px;">
+            Your response has been received.<br>We will be in touch shortly.
+        </p>
+    </div>
+
+    <!-- ======== FOOTER ======== -->
+    <footer>
+        <div class="footer-names">LUXTRA HAIR</div>
+        <div class="footer-tagline">A Modern Hair Maison</div>
+        <div class="ornament" style="margin: 20px auto;">
+            <span class="ornament-line" style="width: 40px;"></span>
+            <span class="ornament-star" style="font-size: 0.5rem;">✦</span>
+            <span class="ornament-line" style="width: 40px;"></span>
+        </div>
+        <div class="footer-copy">
+            &copy; Luxtra Hair. All rights reserved.<br>
+            <a href="https://menashiconsulting.com" target="_blank" class="built-by">Built by Menashi</a>
+        </div>
+    </footer>
+
+    <!-- ======== SCRIPTS ======== -->
+    <script>
+        /* ---- Envelope ---- */
+        const env = document.getElementById('envelope');
+        const envVideo = env.querySelector('.env-video');
+        let opened = false;
+
+        env.addEventListener('click', () => {
+            if (opened) return;
+            opened = true;
+            env.style.cursor = 'default';
+
+            // Start music immediately on tap — this gesture satisfies autoplay policy
+            bgAudio.volume = 0.4;
+            bgAudio.play().then(() => {
+                playing = true;
+                audioBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+            }).catch(() => {});
+
+            if (envVideo) {
+                // VIDEO MODE (Heritage-style):
+                envVideo.playbackRate = 1.5;
+                // Hide overlay text immediately
+                const envText = env.querySelector('.env-text');
+                if (envText) envText.style.opacity = '0';
+                envVideo.play().catch(() => {});
+
+                // Seamless Crossfade: Start fading envelope 0.6s before video ends
+                let envelopeFading = false;
+                envVideo.addEventListener('timeupdate', () => {
+                    if (!envelopeFading && envVideo.duration && envVideo.currentTime >= envVideo.duration - 0.6) {
+                        envelopeFading = true;
+                        env.classList.add('fading'); // kicks off 1.2s opacity transition
+                        // Trigger hero text animations exactly as the blend starts
+                        document.body.classList.remove('locked');
+                        document.body.classList.add('hero-on');
+                    }
+                });
+
+                envVideo.addEventListener('ended', () => {
+                    // Remove physical DOM node after fade completes
+                    setTimeout(() => {
+                        env.classList.add('hidden');
+                        env.remove();
+                    }, 1200);
+                });
+
+                // Safety timeout (reduced to 7s from 8s)
+                setTimeout(() => {
+                    if (!envelopeFading) {
+                        env.classList.add('fading');
+                        document.body.classList.remove('locked');
+                        document.body.classList.add('hero-on');
+                        setTimeout(() => {
+                            env.classList.add('hidden');
+                            env.remove();
+                        }, 1200);
+                    }
+                }, 7000);
+            } else {
+                // FALLBACK MODE (Image dissolve):
+                env.classList.add('phase-glow');
+                setTimeout(() => env.classList.add('phase-dissolve'), 1200);
+                setTimeout(() => {
+                    env.classList.add('fading');
+                    document.body.classList.remove('locked');
+                    document.body.classList.add('hero-on');
+                    setTimeout(() => { env.remove(); }, 1200);
+                }, 2500);
+            }
+        });
+
+        /* ---- Scroll reveal ---- */
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        /* ---- RSVP ---- */
+        const form = document.getElementById('rsvpForm');
+        const rsvp = document.getElementById('rsvp');
+        const confirm = document.getElementById('confirm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitBtn.textContent = '...';
+            submitBtn.disabled = true;
+            const fd = new FormData(form);
+            fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+                .then(() => {}).catch(() => {});
+            setTimeout(() => {
+                rsvp.style.display = 'none';
+                confirm.classList.add('show');
+                confirm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 800);
+        });
+
+        /* ---- Audio ---- */
+        const audioBtn = document.getElementById('audioBtn');
+        const bgAudio = document.getElementById('bgAudio');
+        let playing = false;
+        audioBtn.addEventListener('click', () => {
+            if (playing) {
+                bgAudio.pause();
+                audioBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+            } else {
+                bgAudio.volume = 0.4;
+                bgAudio.play().catch(() => {});
+                audioBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+            }
+            playing = !playing;
+        });
+    </script>
+</body>
+</html>

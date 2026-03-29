@@ -10,6 +10,7 @@ Static site repo powering two Cloudflare Pages deployments for Luxtra Hair.
 |------|--------|--------------------------|---------------|
 | Luxtra Hair main landing | luxtrahair.com | `luxtrahair-landing-page` | `luxtrahair/` |
 | Bloombar private invite | bloombar.luxtrahair.com | `bloombar-invite` | `bloombar/` |
+| Fleur Private Preview invite | thepreview.luxtrahair.com | `fleur-private-preview` | `thepreview/` |
 
 ---
 
@@ -33,6 +34,16 @@ Static site repo powering two Cloudflare Pages deployments for Luxtra Hair.
     floral-garden-bg.png
     undress.mp4
     IMG_5083.PNG                      ← shared with luxtrahair
+
+/thepreview/
+  index.html                          ← Fleur Private Preview invite
+  assets/
+    Magical_Envelope_Opens_Itself.mp4
+    Secret_Garden_Cinematic_Video_Generation.mp4
+    envelope.png
+    floral-garden-bg.png
+    undress.mp4
+    IMG_5083.PNG
 ```
 
 Each Cloudflare Pages project has its **Root directory** set to its respective folder, so each serves its own `index.html` cleanly from `/`.
@@ -48,6 +59,7 @@ Previously a `_redirects` hack was used to serve `invite.html` at `/` for the bl
 ### Cloudflare Pages config
 - `luxtrahair-landing-page` → Root directory: `luxtrahair`, connected to `Menashi-Admin/luxtra-admin-landing` (GitHub)
 - `bloombar-invite` → Root directory: `bloombar`, connected to `Menashi-Admin/luxtra-admin-landing` (GitHub)
+- `fleur-private-preview` → Root directory: `thepreview`, connected to `Menashi-Admin/luxtra-admin-landing` (GitHub)
 
 Both projects auto-deploy on every push to `main`. No `_redirects` or Worker routing needed.
 
