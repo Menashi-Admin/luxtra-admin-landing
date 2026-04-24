@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap");
 
   :root {
     --gold: #b4915f;
@@ -7,8 +7,8 @@
     --off: #f0ece6;
     --mid: #555;
     --light: #999;
-    --font-body: 'Inter', sans-serif;
-    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-heading: 'Cormorant Garamond', serif;
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }

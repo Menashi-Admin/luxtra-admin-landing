@@ -14,8 +14,8 @@
     --text-muted-light: rgba(255,255,255,0.45);
     --divider: #D6D1C8;
     --divider-dark: rgba(255,255,255,0.08);
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', -apple-system, sans-serif;
     --font-logo: 'Genora Sans', 'Inter', sans-serif;
     --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
