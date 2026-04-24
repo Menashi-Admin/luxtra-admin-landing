@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXTRA — Crafted With Purpose</title>
+    <meta name="description" content="Crafted with purpose. Designed to elevate every expression of you. Luxtra Hair — raw, single donor extensions, bespoke forms, and refined care.">
+    <link rel="stylesheet" href="house.css">
+
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Genora Sans';
+            src: local('Genora Sans'), local('GenorasSans');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="site-nav" id="site-nav">
+        <div class="nav-left">
+            <a href="#shop-hair" class="nav-link">Shop Hair</a>
+            <a href="#lune" class="nav-link">Lune</a>
+            <a href="#laverie" class="nav-link">Lavérie</a>
+        </div>
+        <div class="nav-center">
+            <a href="/" class="nav-logo">LUXTRA</a>
+        </div>
+        <div class="nav-right">
+            <a href="#lounge" class="nav-link nav-link--desktop">Lounge</a>
+            <a href="#about" class="nav-link nav-link--desktop">About</a>
+            <button class="nav-icon cart-trigger" id="cart-trigger" type="button" aria-label="Open cart" aria-expanded="false" aria-controls="cart-drawer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span class="cart-count" id="cart-count">(0)</span>
+            </button>
+            <!-- Mobile menu toggle -->
+            <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu__links">
+            <a href="#shop-hair" class="mobile-menu__link">Shop Hair</a>
+            <a href="#lune" class="mobile-menu__link">Lune</a>
+            <a href="#laverie" class="mobile-menu__link">Lavérie</a>
+            <a href="#lounge" class="mobile-menu__link">Lounge</a>
+            <a href="#about" class="mobile-menu__link">About</a>
+        </div>
+    </div>
+
+    <!-- Cart Drawer (kept from original) -->
+    <div class="cart-overlay" id="cart-overlay" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
+        <div class="cart-drawer__header">
+            <div>
+                <p class="cart-drawer__eyebrow">Shopping Bag</p>
+                <h2 class="cart-drawer__title" id="cart-title">Your edit</h2>
+            </div>
+            <button class="cart-drawer__close" id="cart-close" type="button" aria-label="Close cart">
+                <span></span><span></span>
+            </button>
+        </div>
+        <div class="cart-drawer__body" id="cart-items"></div>
+        <div class="cart-drawer__footer">
+            <div class="cart-drawer__totals">
+                <span>Subtotal</span>
+                <strong id="cart-subtotal">₦0</strong>
+            </div>
+            <p class="cart-drawer__note">Shipping and taxes are calculated at checkout.</p>
+            <button class="cart-drawer__checkout" type="button">Proceed To Checkout</button>
+        </div>
+    </aside>
+
+
+    <!-- ═══ SECTION 1 — HERO ═══ -->
+    <header class="hero" id="hero">
+        <div class="hero__media">
+            <video autoplay muted loop playsinline poster="assets/customers/model-highlight.jpg" id="hero-video">
+                <source src="assets/hero/luxtra-hero.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__logo">LUXTRA</h1>
+            <p class="hero__tagline">Crafted With Purpose</p>
+        </div>
+        <div class="hero__scroll">
+            <span></span>
+        </div>
+    </header>
+
+
+    <!-- ═══ SECTION 2 — EDITORIAL COPY BLOCK ═══ -->
+    <section class="copy-block" id="intro">
+        <div class="copy-block__inner reveal-up stagger">
+            <p class="copy-block__eyebrow">Crafted With Purpose.</p>
+            <h2 class="copy-block__headline">Designed to elevate<br>every expression of you.</h2>
+            <div class="copy-block__rule draw-line"></div>
+            <p class="copy-block__body">Intentional hair. Refined by design.</p>
+            <a href="#shop-hair" class="copy-block__link">Shop Hair <span>→</span></a>
+            <div class="copy-block__pillars stagger">
+                <div class="copy-block__pillar">
+                    <svg class="copy-block__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><polygon points="24,4 44,20 38,44 10,44 4,20"/><line x1="24" y1="4" x2="24" y2="44"/><line x1="4" y1="20" x2="44" y2="20"/><line x1="10" y1="44" x2="24" y2="4"/><line x1="38" y1="44" x2="24" y2="4"/></svg>
+                    <h4>Thoughtful by design</h4>
+                    <p>Every detail, considered.</p>
+                </div>
+                <div class="copy-block__pillar">
+                    <svg class="copy-block__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="24" cy="24" r="5"/><g id="rays"><line x1="24" y1="2" x2="24" y2="12"/><line x1="24" y1="36" x2="24" y2="46"/><line x1="2" y1="24" x2="12" y2="24"/><line x1="36" y1="24" x2="46" y2="24"/><line x1="8.4" y1="8.4" x2="15.6" y2="15.6"/><line x1="32.4" y1="32.4" x2="39.6" y2="39.6"/><line x1="8.4" y1="39.6" x2="15.6" y2="32.4"/><line x1="32.4" y1="15.6" x2="39.6" y2="8.4"/><line x1="4" y1="15" x2="13" y2="18"/><line x1="35" y1="30" x2="44" y2="33"/><line x1="4" y1="33" x2="13" y2="30"/><line x1="35" y1="18" x2="44" y2="15"/><line x1="15" y1="4" x2="18" y2="13"/><line x1="30" y1="35" x2="33" y2="44"/><line x1="33" y1="4" x2="30" y2="13"/><line x1="18" y1="35" x2="15" y2="44"/></g></svg>
+                    <h4>Made for impact</h4>
+                    <p>Quality that lasts.</p>
+                </div>
+                <div class="copy-block__pillar">
+                    <svg class="copy-block__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="18" cy="14" r="8"/><circle cx="18" cy="14" r="3"/><rect x="26" y="11" width="18" height="6" rx="1"/><line x1="38" y1="17" x2="38" y2="22"/><line x1="32" y1="17" x2="32" y2="20"/></svg>
+                    <h4>Private by nature</h4>
+                    <p>Access is earned.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══ SECTION 3 — LUNE FEATURE ═══ -->
+    <section class="feature-split feature-split--copy-left section-fade-in" id="shop-hair">
+        <div class="feature-split__text reveal-up stagger">
+            <span class="section-eyebrow light">Wefted System</span>
+            <h2 class="feature-split__title">Lune</h2>
+            <p class="feature-split__label">Bundles, intentionally curated.</p>
+            <p class="feature-split__desc">Thoughtfully designed for seamless, elevated style.</p>
+            <a href="#" class="copy-block__link">Explore Lune <span>→</span></a>
+        </div>
+        <div class="feature-split__image img-reveal reveal-up" style="transition-delay:.15s" data-parallax="0.06">
+            <img src="assets/mood/craftsmanship.jpg" alt="Luxtra — Lune wefted bundles">
+        </div>
+    </section>
+
+
+    <!-- ═══ EDITORIAL DIPTYCH + STATEMENT ═══ -->
+    <section class="diptych" id="editorial">
+        <div class="diptych__panels">
+            <div class="diptych__panel img-reveal" data-parallax="0.04">
+                <img src="assets/customers/model-highlight.jpg" alt="Luxtra — editorial close-up" loading="lazy">
+            </div>
+            <div class="diptych__panel img-reveal" data-parallax="-0.03">
+                <img src="assets/customers/model-straight.jpg" alt="Luxtra — editorial portrait" loading="lazy">
+            </div>
+        </div>
+        <div class="diptych__statement reveal-up">
+            <h2 class="diptych__headline">True luxury isn't fleeting; it's consistent.</h2>
+            <div class="diptych__rule draw-line"></div>
+            <p class="diptych__body">Luxtra bridges the gap between salon precision and your daily ritual. We create extensions, tools, and care designed to perform flawlessly, blend seamlessly, and last with integrity.</p>
+            <a href="#collection" class="copy-block__link">Shop Now <span>→</span></a>
+        </div>
+    </section>
+
+
+
+    <section class="product-carousel" id="collection">
+        <div class="product-carousel__track">
+            <a href="#" class="product-carousel__card">
+                <div class="product-carousel__img-wrap">
+                    <img src="assets/wig-velvet.png" alt="Velvet" class="product-carousel__img-default">
+                    <img src="assets/customers/model-sleek.jpg" alt="Velvet on model" class="product-carousel__img-hover">
+                </div>
+                <h4>Velvet</h4>
+                <p class="product-carousel__study">Movement Study</p>
+            </a>
+            <a href="#" class="product-carousel__card">
+                <div class="product-carousel__img-wrap">
+                    <img src="assets/wig-muse.png" alt="Muse" class="product-carousel__img-default">
+                    <img src="assets/customers/model-straight.jpg" alt="Muse on model" class="product-carousel__img-hover">
+                </div>
+                <h4>Muse</h4>
+                <p class="product-carousel__study">Movement Study</p>
+            </a>
+            <a href="#" class="product-carousel__card">
+                <div class="product-carousel__img-wrap">
+                    <img src="assets/wig-aura.png" alt="Aura" class="product-carousel__img-default">
+                    <img src="assets/customers/model-highlight.jpg" alt="Aura on model" class="product-carousel__img-hover">
+                </div>
+                <h4>Aura</h4>
+                <p class="product-carousel__study">Movement Study</p>
+            </a>
+            <a href="#" class="product-carousel__card">
+                <div class="product-carousel__img-wrap">
+                    <img src="assets/wig-halo.png" alt="Halo" class="product-carousel__img-default">
+                    <img src="assets/hero/hero-model-1.jpg" alt="Halo on mannequin" class="product-carousel__img-hover">
+                </div>
+                <h4>Halo</h4>
+                <p class="product-carousel__study">Movement Study</p>
+            </a>
+            <a href="#" class="product-carousel__card">
+                <div class="product-carousel__img-wrap">
+                    <img src="assets/wig-elan.png" alt="Elan" class="product-carousel__img-default">
+                    <img src="assets/hero/hero-model-2.jpg" alt="Elan on mannequin" class="product-carousel__img-hover">
+                </div>
+                <h4>Elan</h4>
+                <p class="product-carousel__study">Movement Study</p>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ═══ SECTION 4 — EDITORIAL MOOD STRIP ═══ -->
+    <section class="editorial-strip">
+        <div class="editorial-strip__track">
+            <div class="editorial-strip__slide"><img src="assets/mood/craftsmanship.jpg" alt="Craftsmanship" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/movement.jpg" alt="Movement" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/portrait-dramatic.jpg" alt="Editorial portrait" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/hair-wash.jpg" alt="Hair texture detail" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/backstage.jpg" alt="Backstage" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/fabric-flow.jpg" alt="Fabric and form" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/fashion-back.jpg" alt="Fashion editorial" loading="lazy"></div>
+            <div class="editorial-strip__slide"><img src="assets/mood/model-curtain.jpg" alt="Movement study" loading="lazy"></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/craftsmanship.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/movement.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/portrait-dramatic.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/hair-wash.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/backstage.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/fabric-flow.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/fashion-back.jpg" alt="" loading="lazy"></div>
+            <div class="editorial-strip__slide" aria-hidden="true"><img src="assets/mood/model-curtain.jpg" alt="" loading="lazy"></div>
+        </div>
+    </section>
+
+
+    <!-- ═══ EDITORIAL MEGA-TYPE ═══ -->
+    <section class="mega-type" id="mega-statement">
+        <div class="mega-type__inner">
+            <h2 class="mega-type__text stagger reveal-up" aria-label="Luxury You Can Live In.">
+                <span class="mega-word">Luxury</span>
+                <br>
+                <span class="mega-word">You</span>
+                <span class="mega-type__img-wrap mega-word">
+                    <img src="assets/customers/model-extra-5.jpg" alt="Luxtra editorial" class="mega-type__img" data-parallax="0.05">
+                </span>
+                <span class="mega-word">Can</span>
+                <br>
+                <span class="mega-word">Live</span>
+                <span class="mega-word">In.</span>
+            </h2>
+        </div>
+    </section>
+
+
+    <!-- ═══ SECTION 6 — THREE-COLUMN GRID ═══ -->
+    <section class="trio-grid" id="discover">
+        <div class="trio-grid__inner">
+            <a href="#" class="trio-grid__card reveal-up" id="laverie">
+                <div class="trio-grid__image">
+                    <img src="assets/mood/hair-wash.jpg" alt="Lavérie — Hair care and restoration">
+                </div>
+                <div class="trio-grid__text">
+                    <h3>Lavérie</h3>
+                    <p>Care. Restore. Refine.</p>
+                    <span class="trio-grid__link">Discover Lavérie →</span>
+                </div>
+            </a>
+            <a href="#" class="trio-grid__card reveal-up" style="transition-delay:.1s" id="lounge">
+                <div class="trio-grid__image">
+                    <img src="assets/mood/atelier-space.jpg" alt="The Lounge — private circle">
+                </div>
+                <div class="trio-grid__text">
+                    <h3>Lounge</h3>
+                    <p>The Private Circle.</p>
+                    <span class="trio-grid__link">Enter the Lounge →</span>
+                </div>
+            </a>
+            <a href="#collection" class="trio-grid__card reveal-up" style="transition-delay:.2s">
+                <div class="trio-grid__image">
+                    <img src="assets/mood/model-curtain.jpg" alt="Collections — timeless by design">
+                </div>
+                <div class="trio-grid__text">
+                    <h3>Collections</h3>
+                    <p>Timeless by design.</p>
+                    <span class="trio-grid__link">Explore Collections →</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ═══ SECTION 7 — BRAND STATEMENT ═══ -->
+    <section class="brand-statement" id="about">
+        <div class="brand-statement__inner reveal-up">
+            <span class="section-eyebrow">The House</span>
+            <blockquote class="brand-statement__quote">
+                True luxury isn't fleeting;<br>it's consistent.
+            </blockquote>
+            <p class="brand-statement__body">We create forms, tools, and care designed to perform flawlessly, blend seamlessly, and last with integrity.</p>
+        </div>
+    </section>
+
+
+    <!-- ═══ SECTION 8 — EMAIL CAPTURE ═══ -->
+    <section class="email-capture" id="join">
+        <div class="email-capture__inner reveal-up">
+            <div class="email-capture__image">
+                <img src="assets/mood/mirror-silhouette.jpg" alt="Luxtra — Join the House">
+            </div>
+            <div class="email-capture__content">
+                <span class="section-eyebrow">Private Access</span>
+                <h2 class="email-capture__title">Join the House</h2>
+                <p class="email-capture__desc">Be the first to know about new releases, private access, and more.</p>
+                <form class="email-capture__form" id="email-form" action="https://formsubmit.co/concierge@luxtrahair.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Luxtra Homepage Signup">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+                    <div class="email-capture__fields">
+                        <input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required>
+                        <input type="email" name="email" placeholder="Email address" autocomplete="email" required>
+                    </div>
+                    <button class="email-capture__submit" id="email-submit" type="submit">Subscribe</button>
+                </form>
+                <p class="email-capture__fine">By subscribing, you agree to receive updates from Luxtra Hair.</p>
+                <p class="email-capture__success" id="email-success" aria-live="polite">You're on the list. Watch your inbox.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-col footer-col--brand">
+                <img src="assets/logo-footer-cropped.png" alt="Luxtra Hair logo" class="footer-logo-image">
+                <p>Crafted with purpose.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Shop</h5>
+                <a href="#shop-hair">Shop Hair</a>
+                <a href="#lune">Lune</a>
+                <a href="#collection">Accessories</a>
+            </div>
+            <div class="footer-col">
+                <h5>Discover</h5>
+                <a href="#laverie">Lavérie</a>
+                <a href="#lounge">Lounge</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-col">
+                <h5>Connect</h5>
+                <a href="https://instagram.com/luxtrahair" target="_blank">Instagram</a>
+                <a href="mailto:concierge@luxtrahair.com">concierge@luxtrahair.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; LUXTRA 2026. All Rights Reserved.</span>
+            <a href="https://menashiconsulting.com" target="_blank" class="built-by">Built by Menashi</a>
+        </div>
+    </footer>
+
+
+    <!-- ═══ SCRIPTS ═══ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            /* ══════════════════════════════════════
+               CINEMATIC SCROLL REVEAL SYSTEM
+               ══════════════════════════════════════ */
+            const revealSelectors = '.reveal-up, .reveal-fade, .reveal-scale, .stagger, .draw-line, .img-reveal, .section-fade-in';
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+            document.querySelectorAll(revealSelectors).forEach(el => revealObserver.observe(el));
+
+
+            /* ══════════════════════════════════════
+               PARALLAX SCROLL ENGINE
+               ══════════════════════════════════════ */
+            const parallaxEls = document.querySelectorAll('[data-parallax]');
+            const heroVideo = document.getElementById('hero-video');
+            const hero = document.getElementById('hero');
+            const nav = document.getElementById('site-nav');
+            let ticking = false;
+
+            const onScroll = () => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const vh = window.innerHeight;
+
+                    // Parallax elements
+                    parallaxEls.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        const speed = parseFloat(el.dataset.parallax) || 0.05;
+                        const offset = (rect.top - vh / 2) * speed;
+                        el.style.transform = `translateY(${offset}px)`;
+                    });
+
+                    // Hero video dim on scroll
+                    if (heroVideo && hero) {
+                        const heroH = hero.offsetHeight;
+                        const progress = Math.min(scrollY / heroH, 1);
+                        heroVideo.style.filter = `brightness(${1 - progress * 0.5})`;
+                        heroVideo.parentElement.style.transform = `scale(${1 + progress * 0.06})`;
+                    }
+
+                    // Nav state
+                    nav?.classList.toggle('nav-scrolled', scrollY > 80);
+
+                    ticking = false;
+                });
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+
+            /* ══════════════════════════════════════
+               PRODUCT CAROUSEL STAGGER
+               ══════════════════════════════════════ */
+            const carouselCards = document.querySelectorAll('.product-carousel__card');
+            const carouselObserver = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    carouselCards.forEach((card, i) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, i * 120);
+                    });
+                    carouselObserver.disconnect();
+                }
+            }, { threshold: 0.15 });
+            const carouselSection = document.querySelector('.product-carousel');
+            if (carouselSection) {
+                carouselCards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(40px)';
+                    card.style.transition = 'opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1)';
+                });
+                carouselObserver.observe(carouselSection);
+            }
+
+
+            /* ══════════════════════════════════════
+               TRIO GRID HOVER DEPTH
+               ══════════════════════════════════════ */
+            document.querySelectorAll('.trio-grid__card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-4px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+                    card.style.transition = 'transform 0.6s cubic-bezier(0.19,1,0.22,1)';
+                });
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'transform 0.15s ease-out';
+                });
+            });
+
+
+            /* ══════════════════════════════════════
+               MOBILE MENU
+               ══════════════════════════════════════ */
+            const hamburger = document.getElementById('nav-hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburger?.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.toggle('is-open');
+                hamburger.classList.toggle('is-open', isOpen);
+                mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+                document.body.classList.toggle('modal-open', isOpen);
+            });
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('is-open');
+                    hamburger.classList.remove('is-open');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    document.body.classList.remove('modal-open');
+                });
+            });
+
+
+            /* ══════════════════════════════════════
+               CART SYSTEM
+               ══════════════════════════════════════ */
+            const cartState = { items: [] };
+            const cartTrigger = document.getElementById('cart-trigger');
+            const cartDrawer = document.getElementById('cart-drawer');
+            const cartClose = document.getElementById('cart-close');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+
+            const formatPrice = (value, currency = 'NGN') => {
+                if (currency === 'USD') return `$${Number(value).toLocaleString('en-US')}`;
+                return `₦${Number(value).toLocaleString('en-NG')}`;
+            };
+
+            const renderCart = () => {
+                cartCount.textContent = `(${cartState.items.reduce((t, i) => t + i.quantity, 0)})`;
+                if (!cartState.items.length) {
+                    cartItems.innerHTML = `<div class="cart-empty"><p class="cart-empty__title">Your cart is empty.</p><p class="cart-empty__copy">Add a ritual essential to begin your Luxtra edit.</p></div>`;
+                    cartSubtotal.textContent = formatPrice(0);
+                    return;
+                }
+                cartItems.innerHTML = cartState.items.map(item => {
+                    const totalPrice = item.priceNGN * item.quantity;
+                    return `<div class="cart-item" data-cart-id="${item.id}"><div class="cart-item__meta"><p class="cart-item__name">${item.name}</p><p class="cart-item__price">${formatPrice(totalPrice)}</p></div><div class="cart-item__controls"><button type="button" class="cart-qty" data-cart-action="decrease">−</button><span>${item.quantity}</span><button type="button" class="cart-qty" data-cart-action="increase">+</button></div></div>`;
+                }).join('');
+                const subtotal = cartState.items.reduce((s, i) => s + (i.priceNGN * i.quantity), 0);
+                cartSubtotal.textContent = formatPrice(subtotal);
+            };
+
+            const openCart = () => {
+                cartDrawer.classList.add('is-open');
+                cartDrawer.setAttribute('aria-hidden', 'false');
+                cartOverlay.hidden = false;
+                document.body.classList.add('modal-open');
+            };
+            const closeCart = () => {
+                cartDrawer.classList.remove('is-open');
+                cartDrawer.setAttribute('aria-hidden', 'true');
+                cartOverlay.hidden = true;
+                document.body.classList.remove('modal-open');
+            };
+
+            cartTrigger?.addEventListener('click', () => cartDrawer.classList.contains('is-open') ? closeCart() : openCart());
+            cartClose?.addEventListener('click', closeCart);
+            cartOverlay?.addEventListener('click', closeCart);
+
+            cartItems?.addEventListener('click', (e) => {
+                const btn = e.target.closest('[data-cart-action]');
+                const row = e.target.closest('[data-cart-id]');
+                if (!btn || !row) return;
+                const product = cartState.items.find(i => i.id === row.dataset.cartId);
+                if (!product) return;
+                if (btn.dataset.cartAction === 'increase') product.quantity += 1;
+                else product.quantity -= 1;
+                cartState.items = cartState.items.filter(i => i.quantity > 0);
+                renderCart();
+            });
+            renderCart();
+
+
+            /* ══════════════════════════════════════
+               SMOOTH ANCHOR SCROLL
+               ══════════════════════════════════════ */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+
+            /* ══════════════════════════════════════
+               EMAIL CAPTURE
+               ══════════════════════════════════════ */
+            const emailForm = document.getElementById('email-form');
+            const emailSubmit = document.getElementById('email-submit');
+            const emailSuccess = document.getElementById('email-success');
+
+            emailForm?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                emailSubmit.disabled = true;
+                emailSubmit.textContent = 'Joining...';
+                try {
+                    const resp = await fetch(emailForm.action, {
+                        method: 'POST',
+                        body: new FormData(emailForm),
+                        headers: { Accept: 'application/json' }
+                    });
+                    if (!resp.ok) throw new Error('fail');
+                    emailForm.classList.add('is-submitted');
+                    emailSuccess.classList.add('is-visible');
+                    emailSubmit.textContent = 'Joined';
+                } catch {
+                    emailSubmit.disabled = false;
+                    emailSubmit.textContent = 'Subscribe';
+                }
+            });
+
+
+            /* ══════════════════════════════════════
+               EDITORIAL STRIP + MISC
+               ══════════════════════════════════════ */
+            const stripTrack = document.querySelector('.editorial-strip__track');
+            if (stripTrack) {
+                stripTrack.addEventListener('mouseenter', () => stripTrack.style.animationPlayState = 'paused');
+                stripTrack.addEventListener('mouseleave', () => stripTrack.style.animationPlayState = 'running');
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (cartDrawer?.classList.contains('is-open')) closeCart();
+                    if (mobileMenu?.classList.contains('is-open')) {
+                        mobileMenu.classList.remove('is-open');
+                        hamburger.classList.remove('is-open');
+                        document.body.classList.remove('modal-open');
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
