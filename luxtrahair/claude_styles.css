@@ -721,6 +721,16 @@
     letter-spacing: 0.06em;
   }
 
+  .built-by {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .built-by:hover {
+    color: var(--gold);
+  }
+
   /* Animations */
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(18px); }
