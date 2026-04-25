@@ -46,20 +46,6 @@
       Luxtra was created for women who expect more from their hair. More craftsmanship. More presence. More beauty in the details. Every unit is sourced raw, constructed by hand, and delivered with the kind of care that turns a purchase into a ritual.
     </p>
 
-    <div class="pillars reveal reveal-delay-4">
-      <div class="pillar">
-        <span class="pillar-num">I</span>
-        <p class="pillar-name">Raw<br>Hair</p>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">II</span>
-        <p class="pillar-name">Handcrafted<br>Wigs</p>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">III</span>
-        <p class="pillar-name">Private<br>Concierge</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -212,14 +198,68 @@
     <a href="mailto:concierge@luxtrahair.com">Contact</a>
   </div>
   <p class="footer-fine">
-    &copy; 2026 Luxtra Hair. All Rights Reserved.<br>
-    A Modern Hair Maison. Crafted in limited releases.<br><br>
-    <a href="https://menashiconsulting.com" target="_blank" rel="noreferrer" class="built-by">Built by Menashi</a>
+    &copy; 2026 Luxtra Hair
+    <br>
+    <span class="built-by">Built by Menashi</span>
   </p>
 </footer>
 
 
 <script>
+  const heroLogo = document.querySelector('.hero-logo');
+  if (heroLogo) {
+    heroLogo.src = 'assets/logo-monogram-light.png';
+    heroLogo.alt = 'Luxtra Hair monogram';
+  }
+
+  const collectionSection = document.getElementById('collection');
+  if (collectionSection) {
+    collectionSection.remove();
+  }
+
+  const pillars = document.querySelector('.pillars');
+  if (pillars) {
+    pillars.remove();
+  }
+
+  const whatSection = document.getElementById('what');
+  if (whatSection) {
+    whatSection.style.minHeight = 'auto';
+    whatSection.style.padding = '72px 32px 64px';
+  }
+
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.style.padding = '18px 24px 20px';
+    footer.style.borderTop = '1px solid rgba(255,255,255,0.04)';
+  }
+
+  const footerLogo = document.querySelector('.footer-logo');
+  if (footerLogo) {
+    footerLogo.remove();
+  }
+
+  const footerLinks = document.querySelector('.footer-links');
+  if (footerLinks) {
+    footerLinks.style.gap = '18px';
+    footerLinks.style.marginBottom = '8px';
+    footerLinks.style.flexWrap = 'wrap';
+  }
+
+  document.querySelectorAll('.footer-links a, .footer-links span').forEach((item) => {
+    item.style.fontSize = '7px';
+    item.style.letterSpacing = '0.26em';
+    item.style.color = 'rgba(255,255,255,0.22)';
+  });
+
+  const footerFine = document.querySelector('.footer-fine');
+  if (footerFine) {
+    footerFine.style.fontSize = '7px';
+    footerFine.style.lineHeight = '1.4';
+    footerFine.style.letterSpacing = '0.12em';
+    footerFine.style.color = 'rgba(255,255,255,0.16)';
+  }
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {

@@ -89,9 +89,10 @@
   }
 
   .hero-logo {
-    width: 200px;
-    margin-bottom: 12px;
-    opacity: 0.95;
+    width: clamp(180px, 31vw, 220px);
+    height: auto;
+    margin-bottom: 20px;
+    opacity: 1;
     animation: fadeUp 1.2s ease both;
   }
 
@@ -138,12 +139,13 @@
   .hero-sub {
     font-family: var(--font-body);
     font-size: 10.5px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+    color: rgba(255,255,255,0.68);
     letter-spacing: 0.06em;
-    line-height: 1.9;
+    line-height: 1.85;
     max-width: 280px;
     margin: 20px auto 40px;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.28);
     animation: fadeUp 1.2s 0.55s ease both;
   }
 
@@ -179,8 +181,8 @@
   /* Screen 2: what is Luxtra */
   #what {
     background: var(--black);
-    padding: 80px 32px;
-    min-height: 100vh;
+    padding: 72px 32px 64px;
+    min-height: auto;
     justify-content: center;
   }
 
@@ -227,9 +229,9 @@
   .section-body {
     font-family: var(--font-body);
     font-size: 11.5px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 2.1;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.62);
     max-width: 360px;
     margin: 0 auto;
   }
@@ -318,10 +320,7 @@
 
   /* Screen 4: the collection */
   #collection {
-    background: #0d0d0d;
-    padding: 80px 32px;
-    min-height: 100vh;
-    justify-content: center;
+    display: none;
   }
 
   .collection-inner {
@@ -442,13 +441,14 @@
   .join-body {
     font-family: var(--font-body);
     font-size: 10.5px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.4);
-    line-height: 2;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.95;
     margin-bottom: 44px;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.22);
   }
 
   /* Benefits list */
@@ -480,8 +480,8 @@
   .benefit-text {
     font-family: var(--font-body);
     font-size: 10px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    color: rgba(255,255,255,0.72);
     line-height: 1.6;
     letter-spacing: 0.03em;
   }
@@ -489,7 +489,7 @@
   .benefit-text strong {
     display: block;
     font-weight: 500;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.92);
     font-size: 9px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -506,29 +506,30 @@
 
   .form-field {
     width: 100%;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,255,255,0.3);
     padding: 16px 20px;
     font-family: var(--font-body);
     font-size: 11px;
-    font-weight: 300;
-    color: #fff;
+    font-weight: 400;
+    color: rgba(255,255,255,0.92);
     letter-spacing: 0.08em;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease;
     border-radius: 0;
     -webkit-appearance: none;
   }
 
   .form-field::placeholder {
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.62);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 9.5px;
   }
 
   .form-field:focus {
-    border-color: rgba(180,145,95,0.6);
+    background: rgba(0,0,0,0.38);
+    border-color: rgba(180,145,95,0.72);
   }
 
   .form-btn {
@@ -555,11 +556,12 @@
   .form-note {
     font-family: var(--font-body);
     font-size: 8.5px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    color: rgba(255,255,255,0.42);
     text-align: center;
     letter-spacing: 0.08em;
     margin-top: 4px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
   }
 
   .form-note.is-error {
@@ -677,34 +679,30 @@
   /* Footer */
   footer {
     background: #050505;
-    padding: 32px 32px 40px;
+    padding: 18px 24px 20px;
     text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.04);
   }
 
   .footer-logo {
-    width: 120px;
-    opacity: 0.5;
-    margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: none;
   }
 
   .footer-links {
     display: flex;
     justify-content: center;
-    gap: 28px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
   }
 
   .footer-links a,
   .footer-links span {
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 500;
-    letter-spacing: 0.3em;
-    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.26em;
+    color: rgba(255,255,255,0.22);
     text-transform: uppercase;
   }
 
@@ -714,17 +712,21 @@
 
   .footer-fine {
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 300;
-    color: rgba(255,255,255,0.12);
-    line-height: 1.8;
-    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.16);
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    max-width: 220px;
+    margin: 0 auto;
   }
 
   .built-by {
     color: inherit;
     text-decoration: none;
     transition: color 0.2s ease;
+    display: inline-block;
+    margin-top: 4px;
   }
 
   .built-by:hover {
@@ -760,7 +762,7 @@
   .reveal-delay-4 { transition-delay: 0.5s; }
 
   @media (max-width: 380px) {
-    .hero-logo { width: 160px; }
+    .hero-logo { width: 170px; }
     .pillars { flex-direction: column; gap: 2px; background: transparent; }
     .img-trio-label { display: none; }
   }
