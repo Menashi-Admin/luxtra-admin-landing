@@ -1,6 +1,8 @@
 # luxtra-admin-landing
 
-Static site repo powering two Cloudflare Pages deployments for Luxtra Hair.
+Static site repo powering multiple Cloudflare Pages deployments for Luxtra Hair.
+
+Deployment rules live in [STEERING.md](./STEERING.md). Follow that file for all production and preview deployment decisions.
 
 ---
 
