@@ -596,7 +596,37 @@
 
   #success.visible {
     display: flex;
-    animation: fadeIn 0.6s ease;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes dramaticFadeUp {
+    0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  #success.visible .success-logo {
+    opacity: 0;
+    animation: dramaticFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  #success.visible .success-rule {
+    opacity: 0;
+    animation: dramaticFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  }
+  
+  #success.visible .success-eyebrow {
+    opacity: 0;
+    animation: dramaticFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+
+  #success.visible .success-heading {
+    opacity: 0;
+    animation: dramaticFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+  }
+
+  #success.visible .success-body {
+    opacity: 0;
+    animation: dramaticFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
   }
 
   .success-logo {
