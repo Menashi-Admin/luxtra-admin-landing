@@ -110,33 +110,8 @@
       A small circle of women who will be the first to experience the debut collection. Join before May 15th for founding member access.
     </p>
 
-    <div class="benefits reveal reveal-delay-3">
-      <div class="benefit">
-        <span class="benefit-dot"></span>
-        <div class="benefit-text">
-          <strong>First Access</strong>
-          Shop the Fleur collection 48 hours before the public
-        </div>
-      </div>
-
-      <div class="benefit">
-        <span class="benefit-dot"></span>
-        <div class="benefit-text">
-          <strong>Concierge Guidance</strong>
-          One-on-one consultation to find your perfect look
-        </div>
-      </div>
-      <div class="benefit">
-        <span class="benefit-dot"></span>
-        <div class="benefit-text">
-          <strong>Limited Numbers</strong>
-          The Fleur collection will not be restocked
-        </div>
-      </div>
-    </div>
-
     <form
-      class="form-wrap reveal reveal-delay-4"
+      class="form-wrap reveal reveal-delay-3"
       id="private-list-form"
       action="https://formsubmit.co/concierge@luxtrahair.com"
       method="POST"
@@ -199,8 +174,13 @@
 
   const successLogo = document.querySelector('.success-logo');
   if (successLogo) {
-    successLogo.src = 'assets/logo-monogram-light.png';
-    successLogo.alt = 'Luxtra Hair monogram';
+    successLogo.src = 'assets/logo-footer-cropped.png';
+    successLogo.alt = 'Luxtra Hair logo';
+  }
+
+  const editorialSection = document.getElementById('editorial');
+  if (editorialSection) {
+    editorialSection.remove();
   }
 
   const collectionSection = document.getElementById('collection');
