@@ -19,6 +19,327 @@
             font-weight: 100 900;
             font-style: normal;
         }
+
+        /* ── Shopify Integration Styles ── */
+        .product-carousel__card { cursor: default; }
+        .product-carousel__price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .85rem;
+            letter-spacing: .04em;
+            color: rgba(255,255,255,.6);
+            margin-top: .25rem;
+        }
+        .product-carousel__atc {
+            margin-top: .75rem;
+            padding: .6rem 1.4rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .7rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .4s cubic-bezier(.19,1,.22,1);
+        }
+        .product-carousel__atc:hover {
+            background: #fff;
+            color: #0a0a0a;
+            border-color: #fff;
+        }
+        .product-carousel__atc:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+        .product-carousel__atc.is-added {
+            border-color: rgba(255,255,255,.5);
+        }
+        .cart-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .cart-item__thumb {
+            width: 64px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .cart-item__info { flex: 1; }
+        .product-carousel__loading {
+            text-align: center;
+            padding: 3rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .8rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4);
+        }
+
+        /* ── Product Detail Modal (PDP) ── */
+        .pdp-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            opacity: 0; visibility: hidden;
+            transition: opacity .5s cubic-bezier(.19,1,.22,1), visibility .5s;
+            overflow-y: auto;
+        }
+        .pdp-overlay.is-open { opacity: 1; visibility: visible; }
+        .pdp-close {
+            position: fixed; top: 1.5rem; right: 1.5rem; z-index: 10001;
+            width: 44px; height: 44px;
+            background: transparent; border: 1px solid rgba(255,255,255,.2);
+            border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color .3s;
+        }
+        .pdp-close:hover { border-color: rgba(255,255,255,.6); }
+        .pdp-close span {
+            display: block; width: 18px; height: 1px;
+            background: #fff; position: absolute;
+        }
+        .pdp-close span:first-child { transform: rotate(45deg); }
+        .pdp-close span:last-child { transform: rotate(-45deg); }
+        .pdp-container {
+            max-width: 1200px; margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            min-height: 70vh;
+            opacity: 0; transform: translateY(20px);
+            transition: opacity .6s .1s cubic-bezier(.19,1,.22,1), transform .6s .1s cubic-bezier(.19,1,.22,1);
+        }
+        .pdp-overlay.is-open .pdp-container { opacity: 1; transform: translateY(0); }
+        .pdp-gallery { position: sticky; top: 6rem; align-self: start; }
+        .pdp-gallery__main {
+            width: 100%; aspect-ratio: 3/4;
+            overflow: hidden; border-radius: 2px;
+            background: #111;
+        }
+        .pdp-gallery__main img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: opacity .4s ease;
+        }
+        .pdp-gallery__thumbs {
+            display: flex; gap: .5rem; margin-top: .75rem;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .pdp-gallery__thumbs::-webkit-scrollbar { display: none; }
+        .pdp-gallery__thumb {
+            width: 64px; height: 80px; flex-shrink: 0;
+            overflow: hidden; border-radius: 2px;
+            border: 1px solid transparent;
+            cursor: pointer; opacity: .5;
+            transition: opacity .3s, border-color .3s;
+        }
+        .pdp-gallery__thumb.is-active,
+        .pdp-gallery__thumb:hover { opacity: 1; border-color: rgba(255,255,255,.4); }
+        .pdp-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .pdp-details { padding-top: 1rem; }
+        .pdp-details__type {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .65rem; letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4); margin-bottom: .5rem;
+        }
+        .pdp-details__title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem; font-weight: 300;
+            color: #fff; margin-bottom: .5rem;
+        }
+        .pdp-details__price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem; color: rgba(255,255,255,.7);
+            margin-bottom: 2rem;
+        }
+        .pdp-details__desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .85rem; line-height: 1.7;
+            color: rgba(255,255,255,.55);
+            margin-bottom: 2rem;
+            max-width: 480px;
+        }
+        .pdp-details__desc p { margin-bottom: .75rem; }
+        .pdp-options-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .65rem; letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4);
+            margin-bottom: .6rem;
+        }
+        .pdp-variants {
+            display: flex; flex-wrap: wrap; gap: .5rem;
+            margin-bottom: 2rem;
+        }
+        .pdp-variant-btn {
+            padding: .5rem 1.2rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.2);
+            color: rgba(255,255,255,.7);
+            font-family: 'Montserrat', sans-serif;
+            font-size: .75rem; letter-spacing: .06em;
+            cursor: pointer;
+            transition: all .3s;
+        }
+        .pdp-variant-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+        .pdp-variant-btn.is-selected {
+            background: #fff; color: #0a0a0a;
+            border-color: #fff;
+        }
+        .pdp-variant-btn:disabled {
+            opacity: .3; cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .pdp-qty {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .pdp-qty button {
+            width: 36px; height: 36px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.2);
+            color: #fff; font-size: 1rem;
+            cursor: pointer; transition: border-color .3s;
+        }
+        .pdp-qty button:hover { border-color: rgba(255,255,255,.5); }
+        .pdp-qty span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .9rem; color: #fff;
+            min-width: 24px; text-align: center;
+        }
+        .pdp-add-btn {
+            width: 100%; max-width: 400px;
+            padding: .9rem 2rem;
+            background: #fff; color: #0a0a0a;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .75rem; letter-spacing: .14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .4s cubic-bezier(.19,1,.22,1);
+        }
+        .pdp-add-btn:hover { background: #e8e8e8; }
+        .pdp-add-btn:disabled { opacity: .4; cursor: not-allowed; }
+        .pdp-rule {
+            width: 40px; height: 1px;
+            background: rgba(255,255,255,.15);
+            margin: 2rem 0;
+        }
+        /* ── PDP Feature Highlights ── */
+        .pdp-highlights {
+            display: flex; gap: 1.5rem;
+            margin-bottom: 2rem; flex-wrap: wrap;
+        }
+        .pdp-highlight {
+            display: flex; align-items: center; gap: .5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .7rem; letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.5);
+        }
+        .pdp-highlight svg {
+            width: 16px; height: 16px;
+            stroke: rgba(255,255,255,.4);
+            fill: none; stroke-width: 1.5;
+        }
+        /* ── PDP Specs Grid ── */
+        .pdp-specs {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0; margin-bottom: 2rem;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+        .pdp-spec {
+            padding: .75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .pdp-spec__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .6rem; letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.35);
+            margin-bottom: .2rem;
+        }
+        .pdp-spec__value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: .95rem; color: rgba(255,255,255,.8);
+        }
+        /* ── PDP Accordions ── */
+        .pdp-accordion { border-top: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; }
+        .pdp-accordion:last-of-type { border-bottom: 1px solid rgba(255,255,255,.08); }
+        .pdp-accordion__trigger {
+            width: 100%; background: none; border: none;
+            padding: 1rem 0;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .7rem; letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.6);
+            transition: color .3s;
+        }
+        .pdp-accordion__trigger:hover { color: #fff; }
+        .pdp-accordion__trigger svg {
+            width: 12px; height: 12px;
+            stroke: currentColor; fill: none; stroke-width: 2;
+            transition: transform .3s;
+        }
+        .pdp-accordion.is-open .pdp-accordion__trigger svg { transform: rotate(180deg); }
+        .pdp-accordion__body {
+            max-height: 0; overflow: hidden;
+            transition: max-height .4s cubic-bezier(.19,1,.22,1);
+        }
+        .pdp-accordion.is-open .pdp-accordion__body { max-height: 300px; }
+        .pdp-accordion__content {
+            padding: 0 0 1.25rem 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .8rem; line-height: 1.7;
+            color: rgba(255,255,255,.45);
+        }
+        .pdp-accordion__content ul {
+            list-style: none; padding: 0; margin: 0;
+        }
+        .pdp-accordion__content li {
+            padding: .3rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .pdp-accordion__content li::before {
+            content: '·'; position: absolute; left: 0;
+            color: rgba(255,255,255,.25);
+        }
+        /* ── PDP Trust Strip ── */
+        .pdp-trust {
+            display: flex; gap: 2rem;
+            margin-top: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+        .pdp-trust__item {
+            display: flex; flex-direction: column; align-items: center;
+            gap: .3rem; text-align: center;
+        }
+        .pdp-trust__item svg {
+            width: 20px; height: 20px;
+            stroke: rgba(255,255,255,.3);
+            fill: none; stroke-width: 1.5;
+        }
+        .pdp-trust__item span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .55rem; letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+        }
+        @media (max-width: 768px) {
+            .pdp-container {
+                grid-template-columns: 1fr;
+                margin: 1rem auto; padding: 1rem;
+                gap: 1.5rem;
+            }
+            .pdp-gallery { position: relative; top: 0; }
+            .pdp-details__title { font-size: 1.8rem; }
+            .pdp-close { top: 1rem; right: 1rem; }
+            .pdp-highlights { gap: 1rem; }
+            .pdp-specs { grid-template-columns: 1fr; }
+            .pdp-trust { gap: 1rem; flex-wrap: wrap; }
+        }
     </style>
 </head>
 <body>
@@ -330,6 +651,38 @@
     </section>
 
 
+    <!-- ═══ PRODUCT DETAIL MODAL ═══ -->
+    <div class="pdp-overlay" id="pdp-overlay" aria-hidden="true">
+        <button class="pdp-close" id="pdp-close" type="button" aria-label="Close product detail">
+            <span></span><span></span>
+        </button>
+        <div class="pdp-container">
+            <div class="pdp-gallery">
+                <div class="pdp-gallery__main" id="pdp-main-image"></div>
+                <div class="pdp-gallery__thumbs" id="pdp-thumbs"></div>
+            </div>
+            <div class="pdp-details">
+                <p class="pdp-details__type" id="pdp-type"></p>
+                <h2 class="pdp-details__title" id="pdp-title"></h2>
+                <p class="pdp-details__price" id="pdp-price"></p>
+                <div class="pdp-highlights" id="pdp-highlights"></div>
+                <div class="pdp-rule"></div>
+                <div class="pdp-details__desc" id="pdp-desc"></div>
+                <div class="pdp-specs" id="pdp-specs"></div>
+                <div id="pdp-options-wrap"></div>
+                <div class="pdp-qty">
+                    <button type="button" id="pdp-qty-minus">−</button>
+                    <span id="pdp-qty-value">1</span>
+                    <button type="button" id="pdp-qty-plus">+</button>
+                </div>
+                <button class="pdp-add-btn" id="pdp-add-btn" type="button">Add to Bag</button>
+                <div id="pdp-accordions"></div>
+                <div class="pdp-trust" id="pdp-trust"></div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
         <div class="footer-top">
@@ -363,6 +716,7 @@
 
 
     <!-- ═══ SCRIPTS ═══ -->
+    <script src="shopify.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -491,9 +845,9 @@
 
 
             /* ══════════════════════════════════════
-               CART SYSTEM
+               SHOPIFY-POWERED CART SYSTEM
                ══════════════════════════════════════ */
-            const cartState = { items: [] };
+            let shopifyCart = null;
             const cartTrigger = document.getElementById('cart-trigger');
             const cartDrawer = document.getElementById('cart-drawer');
             const cartClose = document.getElementById('cart-close');
@@ -501,25 +855,41 @@
             const cartItems = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
             const cartSubtotal = document.getElementById('cart-subtotal');
-
-            const formatPrice = (value, currency = 'NGN') => {
-                if (currency === 'USD') return `$${Number(value).toLocaleString('en-US')}`;
-                return `₦${Number(value).toLocaleString('en-NG')}`;
-            };
+            const checkoutBtn = document.querySelector('.cart-drawer__checkout');
 
             const renderCart = () => {
-                cartCount.textContent = `(${cartState.items.reduce((t, i) => t + i.quantity, 0)})`;
-                if (!cartState.items.length) {
+                const lines = shopifyCart?.lines || [];
+                const qty = lines.reduce((t, l) => t + l.quantity, 0);
+                cartCount.textContent = `(${qty})`;
+
+                if (!lines.length) {
                     cartItems.innerHTML = `<div class="cart-empty"><p class="cart-empty__title">Your cart is empty.</p><p class="cart-empty__copy">Add a ritual essential to begin your Luxtra edit.</p></div>`;
-                    cartSubtotal.textContent = formatPrice(0);
+                    cartSubtotal.textContent = ShopifyStore.formatPrice(0);
+                    checkoutBtn.disabled = true;
                     return;
                 }
-                cartItems.innerHTML = cartState.items.map(item => {
-                    const totalPrice = item.priceNGN * item.quantity;
-                    return `<div class="cart-item" data-cart-id="${item.id}"><div class="cart-item__meta"><p class="cart-item__name">${item.name}</p><p class="cart-item__price">${formatPrice(totalPrice)}</p></div><div class="cart-item__controls"><button type="button" class="cart-qty" data-cart-action="decrease">−</button><span>${item.quantity}</span><button type="button" class="cart-qty" data-cart-action="increase">+</button></div></div>`;
+                checkoutBtn.disabled = false;
+                cartItems.innerHTML = lines.map(line => {
+                    const lineTotal = Number(line.price.amount) * line.quantity;
+                    const imgTag = line.image ? `<img src="${line.image}" alt="${line.productTitle}" class="cart-item__thumb">` : '';
+                    return `<div class="cart-item" data-line-id="${line.lineId}">
+                        ${imgTag}
+                        <div class="cart-item__info">
+                            <div class="cart-item__meta">
+                                <p class="cart-item__name">${line.productTitle}</p>
+                                ${line.variantTitle !== 'Default Title' ? `<p class="cart-item__variant">${line.variantTitle}</p>` : ''}
+                                <p class="cart-item__price">${ShopifyStore.formatPrice(lineTotal, line.price.currencyCode)}</p>
+                            </div>
+                            <div class="cart-item__controls">
+                                <button type="button" class="cart-qty" data-cart-action="decrease">−</button>
+                                <span>${line.quantity}</span>
+                                <button type="button" class="cart-qty" data-cart-action="increase">+</button>
+                            </div>
+                        </div>
+                    </div>`;
                 }).join('');
-                const subtotal = cartState.items.reduce((s, i) => s + (i.priceNGN * i.quantity), 0);
-                cartSubtotal.textContent = formatPrice(subtotal);
+                const sub = shopifyCart.subtotal;
+                cartSubtotal.textContent = ShopifyStore.formatPrice(sub.amount, sub.currencyCode);
             };
 
             const openCart = () => {
@@ -539,18 +909,379 @@
             cartClose?.addEventListener('click', closeCart);
             cartOverlay?.addEventListener('click', closeCart);
 
-            cartItems?.addEventListener('click', (e) => {
-                const btn = e.target.closest('[data-cart-action]');
-                const row = e.target.closest('[data-cart-id]');
-                if (!btn || !row) return;
-                const product = cartState.items.find(i => i.id === row.dataset.cartId);
-                if (!product) return;
-                if (btn.dataset.cartAction === 'increase') product.quantity += 1;
-                else product.quantity -= 1;
-                cartState.items = cartState.items.filter(i => i.quantity > 0);
-                renderCart();
+            // Checkout → redirect to Shopify checkout
+            checkoutBtn?.addEventListener('click', () => {
+                const url = ShopifyStore.getCheckoutUrl();
+                if (url) window.location.href = url;
             });
-            renderCart();
+
+            // Cart quantity controls (delegated)
+            cartItems?.addEventListener('click', async (e) => {
+                const btn = e.target.closest('[data-cart-action]');
+                const row = e.target.closest('[data-line-id]');
+                if (!btn || !row) return;
+                const lineId = row.dataset.lineId;
+                const line = shopifyCart.lines.find(l => l.lineId === lineId);
+                if (!line) return;
+                btn.disabled = true;
+                try {
+                    const newQty = btn.dataset.cartAction === 'increase' ? line.quantity + 1 : line.quantity - 1;
+                    if (newQty <= 0) {
+                        shopifyCart = await ShopifyStore.removeCartLine(lineId);
+                    } else {
+                        shopifyCart = await ShopifyStore.updateCartLine(lineId, newQty);
+                    }
+                    renderCart();
+                } catch (err) { console.error('[Cart]', err); }
+            });
+
+            // Global addToCart helper for product cards
+            window.luxtraAddToCart = async (variantId, buttonEl) => {
+                if (buttonEl) { buttonEl.disabled = true; buttonEl.textContent = 'Adding...'; }
+                try {
+                    shopifyCart = await ShopifyStore.addToCart(variantId, 1);
+                    renderCart();
+                    openCart();
+                    if (buttonEl) { buttonEl.textContent = 'Added ✓'; buttonEl.classList.add('is-added'); setTimeout(() => { buttonEl.disabled = false; buttonEl.textContent = 'Add to Bag'; buttonEl.classList.remove('is-added'); }, 1800); }
+                } catch (err) {
+                    console.error('[Cart]', err);
+                    if (buttonEl) { buttonEl.disabled = false; buttonEl.textContent = 'Add to Bag'; }
+                }
+            };
+
+            // Restore cart + load products on init
+            (async () => {
+                // Restore previous cart session
+                shopifyCart = await ShopifyStore.init();
+                renderCart();
+
+                // Fetch products and populate the carousel
+                try {
+                    const products = await ShopifyStore.fetchProducts();
+                    const track = document.querySelector('.product-carousel__track');
+                    if (products.length && track) {
+                        track.innerHTML = products.map(p => {
+                            const img = p.images.edges[0]?.node.url || '';
+                            const hoverImg = p.images.edges[1]?.node.url || img;
+                            const variant = p.variants.edges[0]?.node;
+                            const price = variant ? ShopifyStore.formatPrice(variant.price.amount, variant.price.currencyCode) : '';
+                            const variantId = variant?.id || '';
+                            const available = variant?.availableForSale;
+                            return `<div class="product-carousel__card" data-handle="${p.handle}" style="cursor:pointer">
+                                <div class="product-carousel__img-wrap">
+                                    <img src="${img}" alt="${p.title}" class="product-carousel__img-default">
+                                    <img src="${hoverImg}" alt="${p.title} alternate" class="product-carousel__img-hover">
+                                </div>
+                                <h4>${p.title}</h4>
+                                <p class="product-carousel__price">${price}</p>
+                                <button class="product-carousel__atc" data-variant-id="${variantId}" ${!available ? 'disabled' : ''}>${available ? 'Add to Bag' : 'Sold Out'}</button>
+                            </div>`;
+                        }).join('');
+
+                        // Re-apply stagger animation to new cards
+                        const newCards = track.querySelectorAll('.product-carousel__card');
+                        newCards.forEach((card, i) => {
+                            card.style.opacity = '0'; card.style.transform = 'translateY(40px)';
+                            card.style.transition = 'opacity 1s cubic-bezier(.19,1,.22,1), transform 1s cubic-bezier(.19,1,.22,1)';
+                            setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, i * 120);
+                        });
+                     // Add click handlers to carousel cards
+                        const allCards = track.querySelectorAll('.product-carousel__card');
+                        allCards.forEach(card => {
+                            // Card click → open PDP (except when clicking the ATC button)
+                            card.addEventListener('click', (e) => {
+                                if (e.target.closest('.product-carousel__atc')) return;
+                                const handle = card.dataset.handle;
+                                if (handle) openPDP(handle);
+                            });
+                            // ATC button on card
+                            const atcBtn = card.querySelector('.product-carousel__atc');
+                            atcBtn?.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                const vid = atcBtn.dataset.variantId;
+                                if (vid) luxtraAddToCart(vid, atcBtn);
+                            });
+                        });
+                    }
+                    console.log(`[Shopify] Loaded ${products.length} product(s)`);
+                } catch (err) {
+                    console.warn('[Shopify] Could not load products:', err.message);
+                }
+            })();
+
+
+            /* ══════════════════════════════════════
+               PRODUCT DETAIL PAGE (PDP) MODAL
+               ══════════════════════════════════════ */
+            const pdpOverlay = document.getElementById('pdp-overlay');
+            const pdpCloseBtn = document.getElementById('pdp-close');
+            const pdpMainImage = document.getElementById('pdp-main-image');
+            const pdpThumbs = document.getElementById('pdp-thumbs');
+            const pdpType = document.getElementById('pdp-type');
+            const pdpTitle = document.getElementById('pdp-title');
+            const pdpPrice = document.getElementById('pdp-price');
+            const pdpDesc = document.getElementById('pdp-desc');
+            const pdpOptionsWrap = document.getElementById('pdp-options-wrap');
+            const pdpQtyMinus = document.getElementById('pdp-qty-minus');
+            const pdpQtyPlus = document.getElementById('pdp-qty-plus');
+            const pdpQtyValue = document.getElementById('pdp-qty-value');
+            const pdpAddBtn = document.getElementById('pdp-add-btn');
+
+            let pdpSelectedVariant = null;
+            let pdpQuantity = 1;
+            let pdpProduct = null;
+
+            function closePDP() {
+                pdpOverlay.classList.remove('is-open');
+                pdpOverlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            async function openPDP(handle) {
+                // Show overlay immediately with loading state
+                pdpOverlay.classList.add('is-open');
+                pdpOverlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+                pdpMainImage.innerHTML = '<p style="text-align:center;padding:4rem;color:rgba(255,255,255,.3);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase">Loading...</p>';
+                pdpThumbs.innerHTML = '';
+                pdpTitle.textContent = '';
+                pdpPrice.textContent = '';
+                pdpDesc.innerHTML = '';
+                pdpOptionsWrap.innerHTML = '';
+                document.getElementById('pdp-highlights').innerHTML = '';
+                document.getElementById('pdp-specs').innerHTML = '';
+                document.getElementById('pdp-accordions').innerHTML = '';
+                document.getElementById('pdp-trust').innerHTML = '';
+                pdpQuantity = 1;
+                pdpQtyValue.textContent = '1';
+
+                try {
+                    pdpProduct = await ShopifyStore.fetchProductByHandle(handle);
+                    if (!pdpProduct) { closePDP(); return; }
+                    renderPDP(pdpProduct);
+                } catch (err) {
+                    console.error('[PDP]', err);
+                    closePDP();
+                }
+            }
+
+            /* ── Mock luxury product data (used when Shopify product has no description) ── */
+            const LUXTRA_MOCK = {
+                highlights: [
+                    { icon: '<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>', text: '100% Virgin Hair' },
+                    { icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>', text: '18–24 Month Lifespan' },
+                    { icon: '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>', text: 'Single Donor' },
+                ],
+                description: `<p>Sourced from a single donor and meticulously processed to preserve the natural cuticle alignment, this piece delivers a seamless, undetectable blend with your own hair. The result is movement that feels effortless and a finish that looks entirely yours.</p><p>Each unit is hand-selected for consistency in texture, density, and sheen — then refined in-house to meet the exacting standards of the Luxtra atelier.</p>`,
+                specs: {
+                    'Hair Type': 'Raw Virgin — Single Donor',
+                    'Texture': 'Natural Straight / Body Wave',
+                    'Weight': '110g per bundle',
+                    'Lengths': '12" – 30"',
+                    'Origin': 'Southeast Asia',
+                    'Colour': 'Natural Dark (#1B)',
+                },
+                care: [
+                    'Wash with a sulphate-free, colour-safe shampoo',
+                    'Condition from mid-length to ends — avoid the weft',
+                    'Air-dry or blow-dry on low heat with a heat protectant',
+                    'Store on a silk or satin hanger when not in use',
+                    'Deep condition bi-weekly to maintain softness and lustre',
+                    'Avoid sleeping in wet extensions to prevent tangling',
+                ],
+                shipping: [
+                    'Complimentary domestic shipping on orders over ₦150,000',
+                    'Express shipping available — 2–4 business days',
+                    'International delivery to select markets',
+                    'Returns accepted within 14 days — unused, in original packaging',
+                    'For exchanges, contact concierge@luxtrahair.com',
+                ],
+            };
+
+            const pdpHighlights = document.getElementById('pdp-highlights');
+            const pdpSpecs = document.getElementById('pdp-specs');
+            const pdpAccordions = document.getElementById('pdp-accordions');
+            const pdpTrust = document.getElementById('pdp-trust');
+
+            function renderPDP(product) {
+                const images = product.images.edges.map(e => e.node);
+                const variants = product.variants.edges.map(e => e.node);
+
+                // Gallery
+                if (images.length) {
+                    pdpMainImage.innerHTML = `<img src="${images[0].url}" alt="${images[0].altText || product.title}">`;
+                    pdpThumbs.innerHTML = images.map((img, i) =>
+                        `<div class="pdp-gallery__thumb ${i === 0 ? 'is-active' : ''}" data-img-index="${i}"><img src="${img.url}" alt="${img.altText || ''}"></div>`
+                    ).join('');
+
+                    pdpThumbs.querySelectorAll('.pdp-gallery__thumb').forEach(thumb => {
+                        thumb.addEventListener('click', () => {
+                            const idx = parseInt(thumb.dataset.imgIndex);
+                            pdpMainImage.querySelector('img').src = images[idx].url;
+                            pdpThumbs.querySelectorAll('.pdp-gallery__thumb').forEach(t => t.classList.remove('is-active'));
+                            thumb.classList.add('is-active');
+                        });
+                    });
+                }
+
+                // Details
+                pdpType.textContent = product.productType || 'Luxtra Collection';
+                pdpTitle.textContent = product.title;
+
+                // Variants / Options
+                pdpSelectedVariant = variants[0];
+                updatePDPPrice();
+
+                // ── Feature Highlights ──
+                pdpHighlights.innerHTML = LUXTRA_MOCK.highlights.map(h =>
+                    `<div class="pdp-highlight">${h.icon}<span>${h.text}</span></div>`
+                ).join('');
+
+                // ── Description (use Shopify's if available, otherwise mock) ──
+                const hasRealDesc = product.description && product.description.trim().length > 20;
+                pdpDesc.innerHTML = hasRealDesc
+                    ? (product.descriptionHtml || `<p>${product.description}</p>`)
+                    : LUXTRA_MOCK.description;
+
+                // ── Specs Grid ──
+                const specEntries = Object.entries(LUXTRA_MOCK.specs);
+                pdpSpecs.innerHTML = specEntries.map(([label, value]) =>
+                    `<div class="pdp-spec"><div class="pdp-spec__label">${label}</div><div class="pdp-spec__value">${value}</div></div>`
+                ).join('');
+
+                // ── Variant Selector ──
+                if (variants.length > 1 && !(variants.length === 1 && variants[0].title === 'Default Title')) {
+                    const optionGroups = {};
+                    variants.forEach(v => {
+                        (v.selectedOptions || []).forEach(opt => {
+                            if (!optionGroups[opt.name]) optionGroups[opt.name] = new Set();
+                            optionGroups[opt.name].add(opt.value);
+                        });
+                    });
+
+                    let optionsHtml = '';
+                    for (const [name, values] of Object.entries(optionGroups)) {
+                        optionsHtml += `<p class="pdp-options-label">${name}</p><div class="pdp-variants">`;
+                        values.forEach(val => {
+                            const matchingVariant = variants.find(v => v.selectedOptions?.some(o => o.name === name && o.value === val));
+                            const isSelected = pdpSelectedVariant?.selectedOptions?.some(o => o.name === name && o.value === val);
+                            optionsHtml += `<button class="pdp-variant-btn ${isSelected ? 'is-selected' : ''}" data-variant-id="${matchingVariant?.id}" ${!matchingVariant?.availableForSale ? 'disabled' : ''}>${val}</button>`;
+                        });
+                        optionsHtml += '</div>';
+                    }
+                    pdpOptionsWrap.innerHTML = optionsHtml;
+
+                    pdpOptionsWrap.querySelectorAll('.pdp-variant-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const v = variants.find(vr => vr.id === btn.dataset.variantId);
+                            if (v) {
+                                pdpSelectedVariant = v;
+                                updatePDPPrice();
+                                btn.closest('.pdp-variants').querySelectorAll('.pdp-variant-btn').forEach(b => b.classList.remove('is-selected'));
+                                btn.classList.add('is-selected');
+                                if (v.image?.url) pdpMainImage.querySelector('img').src = v.image.url;
+                            }
+                        });
+                    });
+                }
+
+                // ── Accordions (Care + Shipping) ──
+                pdpAccordions.innerHTML = `
+                    <div class="pdp-accordion">
+                        <button class="pdp-accordion__trigger" type="button">
+                            Care Instructions
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="pdp-accordion__body"><div class="pdp-accordion__content">
+                            <ul>${LUXTRA_MOCK.care.map(c => `<li>${c}</li>`).join('')}</ul>
+                        </div></div>
+                    </div>
+                    <div class="pdp-accordion">
+                        <button class="pdp-accordion__trigger" type="button">
+                            Shipping & Returns
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="pdp-accordion__body"><div class="pdp-accordion__content">
+                            <ul>${LUXTRA_MOCK.shipping.map(s => `<li>${s}</li>`).join('')}</ul>
+                        </div></div>
+                    </div>
+                `;
+                // Wire accordion toggles
+                pdpAccordions.querySelectorAll('.pdp-accordion__trigger').forEach(trigger => {
+                    trigger.addEventListener('click', () => {
+                        trigger.closest('.pdp-accordion').classList.toggle('is-open');
+                    });
+                });
+
+                // ── Trust Strip ──
+                pdpTrust.innerHTML = `
+                    <div class="pdp-trust__item">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        <span>Secure Checkout</span>
+                    </div>
+                    <div class="pdp-trust__item">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Quality Guarantee</span>
+                    </div>
+                    <div class="pdp-trust__item">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Ships from Lagos</span>
+                    </div>
+                    <div class="pdp-trust__item">
+                        <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
+                        <span>Gift Packaging</span>
+                    </div>
+                `;
+
+                // Availability
+                pdpAddBtn.disabled = !pdpSelectedVariant?.availableForSale;
+                pdpAddBtn.textContent = pdpSelectedVariant?.availableForSale ? 'Add to Bag' : 'Sold Out';
+            }
+
+            function updatePDPPrice() {
+                if (pdpSelectedVariant) {
+                    pdpPrice.textContent = ShopifyStore.formatPrice(pdpSelectedVariant.price.amount, pdpSelectedVariant.price.currencyCode);
+                }
+            }
+
+            // PDP Quantity
+            pdpQtyMinus?.addEventListener('click', () => {
+                if (pdpQuantity > 1) { pdpQuantity--; pdpQtyValue.textContent = pdpQuantity; }
+            });
+            pdpQtyPlus?.addEventListener('click', () => {
+                pdpQuantity++; pdpQtyValue.textContent = pdpQuantity;
+            });
+
+            // PDP Add to Bag
+            pdpAddBtn?.addEventListener('click', async () => {
+                if (!pdpSelectedVariant) return;
+                pdpAddBtn.disabled = true;
+                pdpAddBtn.textContent = 'Adding...';
+                try {
+                    shopifyCart = await ShopifyStore.addToCart(pdpSelectedVariant.id, pdpQuantity);
+                    renderCart();
+                    pdpAddBtn.textContent = 'Added ✓';
+                    setTimeout(() => {
+                        closePDP();
+                        openCart();
+                        pdpAddBtn.disabled = false;
+                        pdpAddBtn.textContent = 'Add to Bag';
+                    }, 800);
+                } catch (err) {
+                    console.error('[PDP Cart]', err);
+                    pdpAddBtn.disabled = false;
+                    pdpAddBtn.textContent = 'Add to Bag';
+                }
+            });
+
+            // PDP Close
+            pdpCloseBtn?.addEventListener('click', closePDP);
+            pdpOverlay?.addEventListener('click', (e) => {
+                if (e.target === pdpOverlay) closePDP();
+            });
+
+            // Expose openPDP globally
+            window.openPDP = openPDP;
 
 
             /* ══════════════════════════════════════
@@ -606,8 +1337,9 @@
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    if (cartDrawer?.classList.contains('is-open')) closeCart();
-                    if (mobileMenu?.classList.contains('is-open')) {
+                    if (pdpOverlay?.classList.contains('is-open')) closePDP();
+                    else if (cartDrawer?.classList.contains('is-open')) closeCart();
+                    else if (mobileMenu?.classList.contains('is-open')) {
                         mobileMenu.classList.remove('is-open');
                         hamburger.classList.remove('is-open');
                         document.body.classList.remove('modal-open');
